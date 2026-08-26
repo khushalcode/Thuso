@@ -153,13 +153,13 @@ async function main() {
   await db.appUser.create({
     data: {
       name: 'Super Admin',
-      email: 'super@thuso.com',
+      email: 'super@servingsync.com',
       password: 'super123',
       role: 'admin',
       shopId: null,
     },
   })
-  console.log('Seeded Super Admin (super@thuso.com / super123) — access to all shops')
+  console.log('Seeded Super Admin (super@servingsync.com / super123) — access to all shops')
 
   console.log('Done.')
 }

@@ -203,7 +203,7 @@ function HomeScreen({ mode, onSelect, daysLeft }: { mode: Mode; onSelect: (m: Mo
               <UtensilsCrossed className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-sm font-bold text-white">Thuso</h1>
+              <h1 className="text-sm font-bold text-white">ServingSync POS</h1>
               <p className="text-[10px] text-slate-400">{user?.name} · {currentShop?.name}</p>
             </div>
           </div>
@@ -421,7 +421,7 @@ function TrialExpiredScreen({ daysLeft }: { daysLeft: number }) {
         <h1 className="text-2xl font-bold text-white mb-2">Trial Period Over</h1>
         <p className="text-sm text-slate-400 mb-6">Your 365-day trial has ended. Please reinstall the app to start a new trial.</p>
         <Card className="p-6 bg-slate-800/90 border-slate-700">
-          <p className="text-sm text-slate-300 mb-4">To continue using Thuso, uninstall and reinstall the application. This will reset the 365-day trial.</p>
+          <p className="text-sm text-slate-300 mb-4">To continue using ServingSync POS, uninstall and reinstall the application. This will reset the 365-day trial.</p>
           <Button onClick={() => window.location.reload()} className="w-full bg-gradient-to-r from-orange-500 to-rose-500 text-white">Reload App</Button>
         </Card>
       </motion.div>
@@ -438,7 +438,7 @@ function DeviceLockedScreen() {
           <Lock className="w-8 h-8 text-rose-400" />
         </motion.div>
         <h1 className="text-2xl font-bold text-white mb-2">Device Locked</h1>
-        <p className="text-sm text-slate-400 mb-6">This copy of Thuso is locked to another device and cannot be used here.</p>
+        <p className="text-sm text-slate-400 mb-6">This copy of ServingSync POS is locked to another device and cannot be used here.</p>
         <Card className="p-6 bg-slate-800/90 border-slate-700">
           <div className="flex items-start gap-3 mb-4 text-left">
             <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />

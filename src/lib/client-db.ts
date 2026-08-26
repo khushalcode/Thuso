@@ -8,14 +8,7 @@ import { isValidKey } from '@/lib/license-keys'
  *
  * Architecture:
  * - sql.js loads SQLite as WebAssembly in the browser
- * - Database file persisted in THREE layers for maximum durability:
- *   1. IndexedDB (primary) — survives page reload, but CAN be evicted
- *      by the browser under storage pressure.
- *   2. localStorage (backup) — a base64 copy saved on every write.
- *      localStorage is almost never evicted, so this is our safety net
- *      when IndexedDB gets cleared (the "data resets after one day" bug).
- *   3. Server-side file (Electron/Desktop only) — the DB is POSTed to
- *      /api/backup/client-db so it's saved on disk next to custom.db.
+ * - Database file persisted in IndexedDB (survives page reload)
  * - ALL data operations happen client-side — NO server needed
  * - Works in APK (Capacitor), EXE (Tauri/Electron), and browser
  * - Supabase used ONLY for KOT event sync (not data storage)
@@ -23,44 +16,13 @@ import { isValidKey } from '@/lib/license-keys'
 
 let db: Database | null = null
 let initialized = false
-const DB_KEY = 'thuso-database'
+const DB_KEY = 'servingsync-database'
 const DB_VERSION = 1
-// localStorage backup key — this is the "safety net" that prevents
-// data loss when IndexedDB gets evicted by the browser.
-const DB_BACKUP_KEY = 'thuso-db-backup-v1'
-// Don't save to localStorage if the DB is bigger than 4MB (base64
-// encoding adds ~33% overhead, and localStorage has a ~5MB limit).
-const MAX_BACKUP_SIZE = 4 * 1024 * 1024
-
-// ─── Request persistent storage (prevents browser eviction) ───
-// This tells the browser "don't evict my data even under storage
-// pressure". Without this, the browser can silently delete the
-// IndexedDB database after a day or two of inactivity — which is
-// exactly the "data resets after one day" bug.
-async function requestPersistentStorage() {
-  try {
-    if (typeof navigator !== 'undefined' && navigator.storage?.persist) {
-      const alreadyPersisted = await navigator.storage.persisted()
-      if (!alreadyPersisted) {
-        const granted = await navigator.storage.persist()
-        if (granted) {
-          console.log('[client-db] ✓ Persistent storage granted — data will survive browser restarts')
-        } else {
-          console.warn('[client-db] ⚠ Persistent storage denied — data may be evicted under storage pressure')
-        }
-      } else {
-        console.log('[client-db] ✓ Persistent storage already active')
-      }
-    }
-  } catch (e) {
-    console.warn('[client-db] Could not request persistent storage:', e)
-  }
-}
 
 // ─── IndexedDB helpers (for persisting SQLite file) ───
 function openIDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open('thuso', DB_VERSION)
+    const req = indexedDB.open('servingsync', DB_VERSION)
     req.onupgradeneeded = () => {
       req.result.createObjectStore('database')
     }
@@ -72,136 +34,22 @@ function openIDB(): Promise<IDBDatabase> {
 async function saveDB(database: Database) {
   const idb = await openIDB()
   const data = database.export()
-
-  // 1. Save to IndexedDB (primary storage)
-  await new Promise<void>((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     const tx = idb.transaction('database', 'readwrite')
     tx.objectStore('database').put(data, DB_KEY)
     tx.oncomplete = () => { idb.close(); resolve() }
     tx.onerror = () => { idb.close(); reject(tx.error) }
   })
-
-  // 2. Save backup to localStorage (safety net — survives IndexedDB eviction)
-  //    Base64-encode the binary DB so it can be stored as a string.
-  //    Only do this if the DB is small enough to fit in localStorage.
-  try {
-    if (data.length <= MAX_BACKUP_SIZE) {
-      const b64 = uint8ToBase64(data)
-      localStorage.setItem(DB_BACKUP_KEY, b64)
-    } else {
-      // DB is too big for localStorage — at least save a flag so we know
-      // data exists (and can warn the user to export a backup).
-      localStorage.setItem(DB_BACKUP_KEY + ':size', String(data.length))
-    }
-  } catch (e) {
-    // localStorage might be full — non-fatal, IndexedDB is still primary
-    console.warn('[client-db] localStorage backup failed (non-fatal):', e)
-  }
-
-  // 3. Save to server (Electron/Desktop mode — saves DB file to disk)
-  //    This runs in the background and is non-blocking. If the server
-  //    isn't available (PWA/APK mode), it silently fails.
-  saveDBToServer(data).catch(() => {})
-}
-
-// ─── localStorage backup helpers ───
-function uint8ToBase64(bytes: Uint8Array): string {
-  let binary = ''
-  const chunk = 0x8000
-  for (let i = 0; i < bytes.length; i += chunk) {
-    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk) as any)
-  }
-  return btoa(binary)
-}
-
-function base64ToUint8(b64: string): Uint8Array {
-  const binary = atob(b64)
-  const bytes = new Uint8Array(binary.length)
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
-  return bytes
-}
-
-function loadDBFromLocalStorage(): Uint8Array | null {
-  try {
-    const b64 = localStorage.getItem(DB_BACKUP_KEY)
-    if (!b64) return null
-    return base64ToUint8(b64)
-  } catch (e) {
-    console.warn('[client-db] localStorage backup load failed:', e)
-    return null
-  }
-}
-
-// ─── Server-side backup (Electron/Desktop mode) ───
-// Saves the DB to the server's disk so it survives even if BOTH
-// IndexedDB and localStorage are cleared. Only works when running
-// against the standalone server (not in APK/PWA mode).
-async function saveDBToServer(data: Uint8Array): Promise<void> {
-  // Convert to base64 for JSON transport
-  const b64 = uint8ToBase64(data)
-  await fetch('/api/backup/client-db', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ data: b64 }),
-  })
-}
-
-async function loadDBFromServer(): Promise<Uint8Array | null> {
-  try {
-    const res = await fetch('/api/backup/client-db')
-    if (!res.ok) return null
-    const data = await res.json()
-    if (!data?.data) return null
-    return base64ToUint8(data.data)
-  } catch {
-    return null
-  }
 }
 
 async function loadDB(): Promise<Uint8Array | null> {
-  // 1. Try IndexedDB (primary)
-  try {
-    const idb = await openIDB()
-    const result = await new Promise<Uint8Array | null>((resolve, reject) => {
-      const tx = idb.transaction('database', 'readonly')
-      const req = tx.objectStore('database').get(DB_KEY)
-      req.onsuccess = () => { idb.close(); resolve(req.result || null) }
-      req.onerror = () => { idb.close(); reject(req.error) }
-    })
-    if (result) {
-      console.log('[client-db] ✓ DB loaded from IndexedDB')
-      return result
-    }
-  } catch (e) {
-    console.warn('[client-db] IndexedDB load failed:', e)
-  }
-
-  // 2. IndexedDB empty or failed — try localStorage backup
-  const backup = loadDBFromLocalStorage()
-  if (backup) {
-    console.log('[client-db] ✓ DB restored from localStorage backup')
-    // Re-save to IndexedDB so we don't rely on localStorage next time
-    try {
-      const idb = await openIDB()
-      await new Promise<void>((resolve, reject) => {
-        const tx = idb.transaction('database', 'readwrite')
-        tx.objectStore('database').put(backup, DB_KEY)
-        tx.oncomplete = () => { idb.close(); resolve() }
-        tx.onerror = () => { idb.close(); reject(tx.error) }
-      })
-    } catch {}
-    return backup
-  }
-
-  // 3. localStorage also empty — try server (Electron/Desktop mode)
-  const serverData = await loadDBFromServer()
-  if (serverData) {
-    console.log('[client-db] ✓ DB restored from server backup')
-    return serverData
-  }
-
-  console.log('[client-db] No existing DB found — will create fresh')
-  return null
+  const idb = await openIDB()
+  return new Promise((resolve, reject) => {
+    const tx = idb.transaction('database', 'readonly')
+    const req = tx.objectStore('database').get(DB_KEY)
+    req.onsuccess = () => { idb.close(); resolve(req.result || null) }
+    req.onerror = () => { idb.close(); reject(req.error) }
+  })
 }
 
 // ─── Schema creation ───
@@ -324,7 +172,7 @@ CREATE TABLE IF NOT EXISTS AppUser (
 CREATE TABLE IF NOT EXISTS ShopSetting (
   id TEXT PRIMARY KEY,
   shopId TEXT NOT NULL UNIQUE,
-  shopName TEXT NOT NULL DEFAULT 'Thuso',
+  shopName TEXT NOT NULL DEFAULT 'ServingSync Restaurant',
   address TEXT, phone TEXT, email TEXT, gstin TEXT,
   taxRate REAL NOT NULL DEFAULT 5,
   serviceRate REAL NOT NULL DEFAULT 0,
@@ -588,7 +436,7 @@ function seedDatabase(database: Database) {
 
   // Seed super admin
   database.run('INSERT INTO AppUser (id, name, email, password, role, active) VALUES (?,?,?,?,?,?)',
-    [genId(), 'Super Admin', 'super@thuso.com', 'admin123', 'admin', 1])
+    [genId(), 'Super Admin', 'super@servingsync.com', 'admin123', 'admin', 1])
 
   // Seed license keys
   for (const key of LICENSE_KEYS) {
@@ -624,29 +472,17 @@ export async function initDB(): Promise<Database> {
     throw lastErr || new Error('Failed to load sql.js WASM')
   }
 
-  // Try to load existing database from IndexedDB → localStorage → server
+  // Try to load existing database from IndexedDB
   const existingData = await loadDB()
   if (existingData) {
     db = new SQL.Database(existingData)
     migrateSchema(db)
-    // Save immediately to refresh all backup layers
-    await saveDB(db)
   } else {
     db = new SQL.Database()
     db.run(SCHEMA_SQL)
     seedDatabase(db)
     await saveDB(db)
   }
-
-  // Request persistent storage so the browser doesn't evict our data.
-  // This is the PRIMARY fix for the "data resets after one day" bug.
-  // Without this, browsers can silently delete IndexedDB data under
-  // storage pressure (which happens after ~1 day of inactivity).
-  requestPersistentStorage()
-
-  // Start periodic auto-save (every 30s) so backups stay fresh even
-  // if the user doesn't trigger any writes for a while.
-  startPeriodicSave()
 
   initialized = true
   return db
@@ -772,34 +608,12 @@ export function isDbReady(): boolean {
 
 // ─── Save after writes ───
 let saveTimer: any = null
-let periodicSaveTimer: any = null
-
 export function persistDB() {
   if (!db) return
   if (saveTimer) clearTimeout(saveTimer)
-  // Debounce writes (500ms) so rapid mutations don't spam IndexedDB.
   saveTimer = setTimeout(async () => {
     await saveDB(db!)
-  }, 500)
-}
-
-// ─── Periodic auto-save (every 30 seconds) ────────────────────────────
-// Even if no writes happen (e.g. user is just viewing the dashboard),
-// we re-save the DB every 30 seconds. This ensures the localStorage +
-// server backups stay fresh so that if the browser crashes or the user
-// closes the tab unexpectedly, the latest data is already backed up.
-// This runs in the background and is non-blocking.
-export function startPeriodicSave() {
-  if (periodicSaveTimer) clearInterval(periodicSaveTimer)
-  periodicSaveTimer = setInterval(async () => {
-    if (db) {
-      try {
-        await saveDB(db)
-      } catch (e) {
-        console.warn('[client-db] periodic save failed:', e)
-      }
-    }
-  }, 30_000) // every 30 seconds
+  }, 500) // Debounce saves (500ms)
 }
 
 // ─── Query helpers ───

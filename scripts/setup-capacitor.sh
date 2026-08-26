@@ -16,7 +16,7 @@ sed -i.bak 's/output: "standalone"/output: "export"/' next.config.ts
 rm -f next.config.ts.bak
 
 echo "==> Initializing Capacitor (webDir = out)..."
-npx cap init ThusoPOS com.thuso.pos --web-dir=out
+npx cap init ServingSyncPOS com.servingsync.pos --web-dir=out
 
 echo "==> Adding Android platform..."
 npx cap add android

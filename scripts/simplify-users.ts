@@ -9,19 +9,19 @@ async function main() {
 
   // Delete all users except super admin
   const deleted = await db.appUser.deleteMany({
-    where: { email: { not: 'super@thuso.com' } },
+    where: { email: { not: 'super@servingsync.com' } },
   })
   console.log(`Deleted ${deleted.count} user(s)`)
 
   // Ensure super admin exists
   const superAdmin = await db.appUser.findUnique({
-    where: { email: 'super@thuso.com' },
+    where: { email: 'super@servingsync.com' },
   })
   if (!superAdmin) {
     await db.appUser.create({
       data: {
         name: 'Super Admin',
-        email: 'super@thuso.com',
+        email: 'super@servingsync.com',
         password: 'admin123',
         role: 'admin',
         shopId: null,

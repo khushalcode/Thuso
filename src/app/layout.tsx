@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Thuso — Restaurant Counter & Kitchen",
+  title: "ServingSync POS — Restaurant Counter & Kitchen",
   description: "Offline-first restaurant POS with real-time KOT sync between counter and kitchen tablet.",
   keywords: ["restaurant", "POS", "KOT", "billing", "kitchen display", "restaurant management"],
-  authors: [{ name: "Thuso" }],
+  authors: [{ name: "ServingSync" }],
   manifest: "/manifest.json",
   openGraph: {
-    title: "Thuso",
+    title: "ServingSync POS",
     description: "Offline-first restaurant POS with real-time KOT sync",
     type: "website",
   },

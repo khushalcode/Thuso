@@ -39,8 +39,8 @@ interface SessionState {
 
 const SessionContext = createContext<SessionState | undefined>(undefined)
 
-const STORAGE_KEY = 'thuso-session'
-const THEME_KEY = 'thuso-theme'
+const STORAGE_KEY = 'servingsync-session'
+const THEME_KEY = 'servingsync-theme'
 
 export function SessionProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<SessionUser | null>(null)

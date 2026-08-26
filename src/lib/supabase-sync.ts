@@ -4,7 +4,7 @@ import { getSupabase } from './supabase'
 
 function getDeviceId(): string {
   if (typeof window === 'undefined') return 'server'
-  const key = 'thuso-device-id'
+  const key = 'servingsync-device-id'
   let id = localStorage.getItem(key)
   if (!id) {
     id = 'dev_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8)
@@ -96,13 +96,13 @@ export async function pushDelete(table: string, id: string): Promise<void> {
 
 export function getLastSync(): Date {
   if (typeof window === 'undefined') return new Date(0)
-  const stored = localStorage.getItem('thuso-last-sync')
+  const stored = localStorage.getItem('servingsync-last-sync')
   return stored ? new Date(stored) : new Date(0)
 }
 
 export function setLastSync(date: Date): void {
   if (typeof window === 'undefined') return
-  localStorage.setItem('thuso-last-sync', date.toISOString())
+  localStorage.setItem('servingsync-last-sync', date.toISOString())
 }
 
 export async function pullChanges(lastSync: Date): Promise<Record<string, any[]>> {

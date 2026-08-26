@@ -31,7 +31,7 @@ export default function BackupPage() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `thuso-backup-${new Date().toISOString().split('T')[0]}.json`
+      a.download = `servingsync-backup-${new Date().toISOString().split('T')[0]}.json`
       a.click()
       URL.revokeObjectURL(url)
       toast.success('Backup exported successfully')
@@ -166,7 +166,7 @@ export default function BackupPage() {
         return
       }
       const dateStr = new Date().toISOString().split('T')[0]
-      downloadExcel(sheets, `thuso-export-${dateStr}`)
+      downloadExcel(sheets, `servingsync-export-${dateStr}`)
       toast.success(`Excel exported with ${sheets.length} sheet${sheets.length > 1 ? 's' : ''}`)
     } catch (e: any) {
       console.error(e)

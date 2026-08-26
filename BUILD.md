@@ -1,4 +1,4 @@
-# Thuso — Build Guide
+# ServingSync POS — Build Guide
 
 ## Your License Keys
 
@@ -6,7 +6,7 @@
 See `download/license-keys.txt` for the full list.
 
 **Super Admin Login:**
-- Email: `super@thuso.com`
+- Email: `super@servingsync.com`
 - Password: `admin123`
 
 ---
@@ -17,12 +17,12 @@ The .exe has been built in `release/win-unpacked/`.
 
 ### To run on Windows:
 1. Copy the entire `release/win-unpacked/` folder to a Windows computer
-2. Double-click `Thuso.exe`
+2. Double-click `ServingSync POS.exe`
 3. The app will:
-   - Auto-create a local SQLite database in `%APPDATA%/Thuso/db/`
+   - Auto-create a local SQLite database in `%APPDATA%/ServingSync POS/db/`
    - Ask for a license key (use one from license-keys.txt)
    - Open the login screen
-   - Login with super@thuso.com / admin123
+   - Login with super@servingsync.com / admin123
 
 ### To build a proper installer (.exe setup) on Windows:
 1. Copy this entire project to a Windows computer
@@ -31,7 +31,7 @@ The .exe has been built in `release/win-unpacked/`.
    - Install dependencies
    - Generate Prisma client
    - Build Next.js standalone
-   - Create `Thuso Setup 1.0.0.exe` (NSIS installer)
+   - Create `ServingSync POS Setup 1.0.0.exe` (NSIS installer)
 4. The installer creates desktop + Start Menu shortcuts
 
 ### ⚠️ If you get "Failed to archive download files" error
@@ -83,7 +83,7 @@ from GitHub (which is slow or blocked in many regions, including India).
 ### Files in the .exe package:
 ```
 release/win-unpacked/
-├── Thuso.exe        ← Main app (double-click to run)
+├── ServingSync POS.exe        ← Main app (double-click to run)
 ├── resources/
 │   ├── app.asar               ← Electron main process
 │   ├── standalone/            ← Next.js server (bundled)
@@ -140,7 +140,7 @@ npm install @capacitor/core @capacitor/cli
 npm install @capacitor/android
 
 # Initialize
-npx cap init Thuso com.thuso.pos
+npx cap init ServingSync POS com.servingsync.pos
 
 # Build the web app
 npm run build
@@ -185,7 +185,7 @@ NODE_ENV=production node .next/standalone/server.js
 ## Database
 
 The app uses SQLite — a single file at `db/custom.db`.
-- On Windows .exe: `%APPDATA%/Thuso/db/custom.db`
+- On Windows .exe: `%APPDATA%/ServingSync POS/db/custom.db`
 - On dev: `/home/z/my-project/db/custom.db`
 
 The database is auto-created on first launch with:

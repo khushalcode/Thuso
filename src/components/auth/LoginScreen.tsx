@@ -58,7 +58,7 @@ export function LoginScreen({ onLoggedOut }: LoginScreenProps) {
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }} className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-2xl mx-auto mb-3">
             <UtensilsCrossed className="w-8 h-8 text-white" />
           </motion.div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">Thuso</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">ServingSync POS</h1>
           <p className="text-sm text-slate-300 mt-1">Multi-shop restaurant management</p>
         </div>
         <Card className="p-6 shadow-2xl border-white/10 bg-slate-900/80 backdrop-blur-xl">

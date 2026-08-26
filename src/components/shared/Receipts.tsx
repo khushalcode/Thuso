@@ -51,7 +51,7 @@ export function KOTReceipt({ order, kotNo, style }: { order: Order; kotNo: numbe
       {style?.kotShowLogo !== false && (
         <div style={{ textAlign: align as any }}>
           <div className="bold lg" style={{ color: accent }}>** {style?.kotPrefix || 'KOT'} **</div>
-          <div className="bold md">{style?.shopName || 'Thuso'}</div>
+          <div className="bold md">{style?.shopName || 'ServingSync Restaurant'}</div>
           <div className="xs">Kitchen Order Ticket</div>
         </div>
       )}
@@ -153,7 +153,7 @@ export function BillReceipt({
   const fontSize = style?.billFontSize || 11
   const align = style?.billHeaderAlign || 'center'
 
-  const name = style?.shopName || restaurantName || 'Thuso'
+  const name = style?.shopName || restaurantName || 'ServingSync Restaurant'
   const addr = style?.address || restaurantAddr
   const phone = style?.phone || restaurantPhone
   const email = style?.email
@@ -275,7 +275,7 @@ export function BillReceipt({
       )}
       <div className="center xs">
         <div>{footer}</div>
-        <div className="mt-1">Powered by Thuso</div>
+        <div className="mt-1">Powered by ServingSync POS</div>
       </div>
     </div>
   )
