@@ -1,0 +1,3 @@
+{
+  "/api/zomato/[id]/route": "app/api/zomato/[id]/route.js"
+}

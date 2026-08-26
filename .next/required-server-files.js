@@ -106,7 +106,7 @@ self.__SERVER_FILES_MANIFEST={
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/home/z/my-project",
+    "outputFileTracingRoot": "/Users/mac/Downloads/servingsync-pos-FULL",
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -176,7 +176,7 @@ self.__SERVER_FILES_MANIFEST={
       "proxyPrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 1,
+      "cpus": 3,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptOperationCache": null,
@@ -321,13 +321,13 @@ self.__SERVER_FILES_MANIFEST={
     "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight",
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
-    "repoRoot": "/home/z/my-project",
+    "repoRoot": "/Users/mac/Downloads/servingsync-pos-FULL",
     "turbopack": {
-      "root": "/home/z/my-project"
+      "root": "/Users/mac/Downloads/servingsync-pos-FULL"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/home/z/my-project",
+  "appDir": "/Users/mac/Downloads/servingsync-pos-FULL",
   "relativeAppDir": "",
   "files": [
     ".next/package.json",

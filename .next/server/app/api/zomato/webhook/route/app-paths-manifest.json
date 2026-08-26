@@ -1,0 +1,3 @@
+{
+  "/api/zomato/webhook/route": "app/api/zomato/webhook/route.js"
+}
