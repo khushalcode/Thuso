@@ -1,0 +1,59 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Force-install Windows native binaries
+        run: npm install --no-save --include=optional --os=win32 --cpu=x64 sharp lightningcss @tailwindcss/oxide
+
+      - name: Generate Windows icon
+        run: node scripts/gen-icon.js
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          SKIP_ENV_VALIDATION: 'true'
+
+      - name: Build Windows EXE
+        run: npx electron-builder --win --x64 --publish never
+
+      - name: Check EXE files
+        shell: pwsh
+        run: |
+          Write-Host "=== DIST ==="
+          Get-ChildItem -Path dist -Recurse -Filter *.exe |
+            Select-Object FullName, Length
+
+      - name: Upload Windows EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: Thuso-Windows-EXE
+          path: |
+            dist/*.exe
+            dist/win-unpacked/*.exe
+          if-no-files-found: error
+          retention-days: 30

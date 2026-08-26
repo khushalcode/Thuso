@@ -1,0 +1,6 @@
+{"timestamp":"00:00:14.091","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:21.447","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:00:50.829","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:02:16.810","source":"Browser","level":"LOG","message":"[client-db] No existing DB found — will create fresh"}
+{"timestamp":"00:02:16.811","source":"Browser","level":"WARN","message":"[client-db] ⚠ Persistent storage denied — data may be evicted under storage pressure"}
+{"timestamp":"00:02:17.626","source":"Server","level":"WARN","message":"[browser] \"[client-db] ⚠ Persistent storage denied — data may be evicted under storage pressure\" \"(src/lib/client-db.ts:49:19)\""}

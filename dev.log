@@ -1,0 +1,15 @@
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.174.114.67:3000
+- Environments: .env
+✓ Ready in 6.4s
+✓ Running next.config.ts took 560ms
+
+○ Compiling / ...
+ GET / 200 in 31.2s (next.js: 30.6s, application-code: 634ms)
+ GET /api/backup/client-db 200 in 2.7s (next.js: 2.6s, application-code: 97ms)
+ POST /api/backup/client-db 200 in 97ms (next.js: 50ms, application-code: 47ms)
+ POST /api/backup/client-db 200 in 137ms (next.js: 82ms, application-code: 55ms)
+ POST /api/backup/client-db 200 in 87ms (next.js: 33ms, application-code: 54ms)
+[browser] [client-db] ⚠ Persistent storage denied — data may be evicted under storage pressure (src/lib/client-db.ts:49:19)
+ POST /api/backup/client-db 200 in 58ms (next.js: 27ms, application-code: 31ms)
