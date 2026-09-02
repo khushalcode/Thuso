@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -17,8 +18,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Thuso — Restaurant Counter & Kitchen",
-  description: "Offline-first restaurant POS with real-time KOT sync between counter and kitchen tablet.",
-  keywords: ["restaurant", "POS", "KOT", "billing", "kitchen display", "restaurant management"],
+  description:
+    "Offline-first restaurant POS with real-time KOT sync between counter and kitchen tablet.",
+  keywords: [
+    "restaurant",
+    "POS",
+    "KOT",
+    "billing",
+    "kitchen display",
+    "restaurant management",
+  ],
   authors: [{ name: "Thuso" }],
   manifest: "/manifest.json",
   openGraph: {
@@ -35,10 +44,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+/>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
+        {/* Mobile safe-area top margin */}
+        <div
+          className="w-full shrink-0"
+          style={{
+            height: "env(safe-area-inset-top, 0px)",
+          }}
+        />
+
         <SessionProvider>
           {children}
           <Toaster />
@@ -48,3 +69,4 @@ export default function RootLayout({
     </html>
   );
 }
+

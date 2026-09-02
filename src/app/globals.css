@@ -120,7 +120,17 @@
     @apply bg-background text-foreground;
   }
 }
+html,
+body {
+  margin-top: 9;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
 
+body {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
 /* ─── Brand theme variables (applied via JS in session.tsx) ─── */
 :root {
   --brand-from: #f97316;
