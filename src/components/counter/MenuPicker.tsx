@@ -1,8 +1,8 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Plus, Check, Minus } from 'lucide-react'
+import { Search, Plus, Check, Minus, LayoutGrid } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -20,6 +20,10 @@ interface MenuPickerProps {
 
 export function MenuPicker({ items, onAdd, disabled, orderItems }: MenuPickerProps) {
   const [search, setSearch] = useState('')
+  /** Active category filter — 'all' shows every category, otherwise only the picked one. */
+  const [activeCategory, setActiveCategory] = useState<string>('all')
+  /** Ref to the category tab strip — used to scroll the active tab into view on small screens. */
+  const tabsRef = useRef<HTMLDivElement | null>(null)
 
   // Build a map of menuItemId → total quantity (only count non-cancelled items)
   const orderQtyMap = useMemo(() => {
@@ -31,6 +35,7 @@ export function MenuPicker({ items, onAdd, disabled, orderItems }: MenuPickerPro
     return map
   }, [orderItems])
 
+  // Group items by category (filtered by search text)
   const grouped = useMemo(() => {
     const map = new Map<string, MenuItem[]>()
     items.forEach((item) => {
@@ -41,6 +46,38 @@ export function MenuPicker({ items, onAdd, disabled, orderItems }: MenuPickerPro
     })
     return Array.from(map.entries()).sort(([a], [b]) => a.localeCompare(b))
   }, [items, search])
+
+  // Stable list of categories — used to render the top tab bar.
+  // Built from ALL items (not the search-filtered list) so the tabs don't
+  // disappear/jump around as the user types in the search box.
+  const categories = useMemo(() => {
+    const set = new Set<string>()
+    items.forEach((i) => set.add(i.category))
+    return Array.from(set).sort((a, b) => a.localeCompare(b))
+  }, [items])
+
+  // Auto-select the first available category if the current selection
+  // disappears from the filtered list (e.g. user picked "Pizza" then typed
+  // a search term that matches no pizza).
+  useEffect(() => {
+    if (activeCategory === 'all') return
+    if (grouped.length === 0) return
+    const stillThere = grouped.some(([cat]) => cat === activeCategory)
+    if (!stillThere) setActiveCategory('all')
+  }, [grouped, activeCategory])
+
+  // Scroll the active tab into view inside the horizontal strip (mobile).
+  useEffect(() => {
+    if (!tabsRef.current) return
+    const el = tabsRef.current.querySelector<HTMLElement>(`[data-cat="${activeCategory}"]`)
+    if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }, [activeCategory])
+
+  // Visible groups depend on the active category filter
+  const visibleGrouped =
+    activeCategory === 'all'
+      ? grouped
+      : grouped.filter(([cat]) => cat === activeCategory)
 
   return (
     <div className="flex flex-col h-full">
@@ -55,9 +92,59 @@ export function MenuPicker({ items, onAdd, disabled, orderItems }: MenuPickerPro
         />
       </div>
 
+      {/* ─── Category tab strip — sticky at the top for one-tap access ─── */}
+      {categories.length > 0 && (
+        <div
+          ref={tabsRef}
+          className="flex items-center gap-1.5 overflow-x-auto thin-scrollbar pb-2 mb-2 shrink-0 -mx-1 px-1"
+          role="tablist"
+          aria-label="Menu categories"
+        >
+          <button
+            type="button"
+            data-cat="all"
+            onClick={() => setActiveCategory('all')}
+            className={`shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+              activeCategory === 'all'
+                ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-md'
+                : 'bg-white/80 text-slate-700 border-white/40 hover:bg-white'
+            }`}
+          >
+            <LayoutGrid className="w-3 h-3" />
+            All
+          </button>
+          {categories.map((cat) => {
+            const count = items.filter((i) => i.category === cat).length
+            const isActive = activeCategory === cat
+            return (
+              <button
+                key={cat}
+                type="button"
+                data-cat={cat}
+                onClick={() => setActiveCategory(isActive ? 'all' : cat)}
+                className={`shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
+                  isActive
+                    ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-md'
+                    : 'bg-white/80 text-slate-700 border-white/40 hover:bg-white'
+                }`}
+              >
+                {cat}
+                <span
+                  className={`text-[9px] font-bold px-1 rounded-full ${
+                    isActive ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-500'
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      )}
+
       {/* Items grouped by category — glassmorphism cards */}
       <div className="overflow-y-auto flex-1 pr-1 space-y-4 thin-scrollbar">
-        {grouped.map(([category, catItems]) => (
+        {visibleGrouped.map(([category, catItems]) => (
           <div key={category}>
             {/* Category header — glassmorphism sticky */}
             <div className="flex items-center gap-2 mb-2 sticky top-0 z-10 py-1.5 px-2 rounded-lg bg-white/80 backdrop-blur-md shadow-sm border border-white/30">
@@ -179,7 +266,7 @@ export function MenuPicker({ items, onAdd, disabled, orderItems }: MenuPickerPro
             </div>
           </div>
         ))}
-        {grouped.length === 0 && (
+        {visibleGrouped.length === 0 && (
           <div className="text-center py-8 text-sm text-slate-400">No items match your search</div>
         )}
       </div>

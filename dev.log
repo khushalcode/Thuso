@@ -1,8 +1,9 @@
 ▲ Next.js 16.3.0 (Turbopack)
 - Local:         http://localhost:3000
-- Network:       http://10.174.114.67:3000
+- Network:       http://172.31.42.67:3000
 - Environments: .env
-✓ Ready in 1823ms
-✓ Running next.config.ts took 284ms
+✓ Ready in 1992ms
+✓ Running next.config.ts took 3.1s
 
- GET / 200 in 3.2s (next.js: 942ms, application-code: 2.3s)
+ GET / 200 in 1455ms (next.js: 709ms, application-code: 746ms)
+[browser] Realtime send() is automatically falling back to REST API. This behavior will be deprecated in the future. Please use httpSend() explicitly for REST delivery. (src/hooks/use-restaurant-sync.ts:176:33)

@@ -65,11 +65,11 @@ export function BillReceiptPreview({ settings }: { settings: any }) {
       </table>
       <div className="border-t border-dashed border-slate-300 my-1.5" />
       <Row label="Subtotal" value="₹550.00" />
-      <Row label={`Tax (${settings.taxRate || 5}%)`} value="₹27.50" />
+      <Row label={`Tax (${settings.taxRate || 0}%)`} value="₹0.00" />
       <div className="border-t-2 my-1" style={{ borderTopColor: accent }} />
       <div className="flex justify-between font-bold text-sm">
         <span>TOTAL</span>
-        <span style={{ color: accent }}>₹577.50</span>
+        <span style={{ color: accent }}>₹550.00</span>
       </div>
       {settings.billExtraNote && (
         <div className="border-t border-dashed border-slate-300 my-1.5 pt-1 text-[10px] italic">

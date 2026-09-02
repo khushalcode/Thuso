@@ -1,2 +1,5 @@
-{"timestamp":"00:00:05.535","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:29.724","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:08.418","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:18.375","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:00:34.150","source":"Browser","level":"WARN","message":"Realtime send() is automatically falling back to REST API. This behavior will be deprecated in the future. Please use httpSend() explicitly for REST delivery."}
+{"timestamp":"00:00:34.454","source":"Server","level":"WARN","message":"[browser] \"Realtime send() is automatically falling back to REST API. This behavior will be deprecated in the future. Please use httpSend() explicitly for REST delivery.\" \"(src/hooks/use-restaurant-sync.ts:176:33)\""}
+{"timestamp":"00:00:37.722","source":"Browser","level":"LOG","message":"[client-db] ✓ Excel blob updated in IndexedDB"}

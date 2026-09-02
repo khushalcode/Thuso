@@ -43,7 +43,10 @@ export function BillingDialog({
   onConfirm,
   onAfterBill,
 }: BillingDialogProps & { settings?: any }) {
-  const [taxRate, setTaxRate] = useState(5)
+  // ─── Tax is NO LONGER auto-injected from shop settings ───
+  // The cashier must explicitly enter the tax % at bill-print time.
+  // Defaults to 0 so the user has to consciously opt-in to charging tax.
+  const [taxRate, setTaxRate] = useState(0)
   const [discount, setDiscount] = useState(0)
   const [serviceCharge, setServiceCharge] = useState(0)
   const [paymentMode, setPaymentMode] = useState<PaymentMode>('cash')
@@ -53,7 +56,9 @@ export function BillingDialog({
 
   useEffect(() => {
     if (open) {
-      setTaxRate(settings?.taxRate ?? 5)
+      // Tax is no longer pulled from settings — the cashier enters it
+      // manually each time they generate a bill ("ask tax at bill print time").
+      setTaxRate(0)
       setServiceCharge(settings?.serviceRate ?? 0)
       setDiscount(0)
       setPaymentMode('cash')
@@ -134,13 +139,14 @@ export function BillingDialog({
                 <div className="space-y-3">
                   <div className="grid grid-cols-3 gap-2">
                     <div>
-                      <Label className="text-xs text-slate-500">Tax %</Label>
+                      <Label className="text-xs text-slate-500">Tax % (optional)</Label>
                       <Input
                         type="number"
                         value={taxRate}
                         onChange={(e) => setTaxRate(Number(e.target.value) || 0)}
                         min={0}
                         step="0.5"
+                        placeholder="0"
                         className="mt-1"
                       />
                     </div>

@@ -74,8 +74,6 @@ export function ShopPicker({ onPick }: ShopPickerProps) {
                       <p className="text-xs text-white/80 mb-3 line-clamp-2">{shop.address}</p>
                     )}
                     <div className="flex items-center gap-3 text-[11px] text-white/80 mb-4">
-                      <span>Tax: {shop.taxRate}%</span>
-                      <span>·</span>
                       <span>{shop.currency}</span>
                       {shop.gstin && (
                         <>

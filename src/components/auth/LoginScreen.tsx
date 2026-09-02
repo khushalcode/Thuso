@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  UtensilsCrossed, Mail, Lock, ArrowRight, Loader2, Eye, EyeOff,
+  Mail, Lock, ArrowRight, Loader2, Eye, EyeOff,
   AlertCircle,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -55,10 +55,31 @@ export function LoginScreen({ onLoggedOut }: LoginScreenProps) {
       </div>
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="relative w-full max-w-md">
         <div className="text-center mb-6">
-          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.2 }} className="w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-2xl mx-auto mb-3">
-            <UtensilsCrossed className="w-8 h-8 text-white" />
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', delay: 0.2 }}
+            className="w-20 h-20 rounded-2xl bg-white/95 shadow-2xl mx-auto mb-3 flex items-center justify-center overflow-hidden ring-1 ring-white/40"
+          >
+            {/* ─── App logo — replaces the old UtensilsCrossed icon ─── */}
+            <img
+              src="/logo.png"
+              alt="Thuso logo"
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                const target = e.currentTarget
+                target.style.display = 'none'
+                const parent = target.parentElement
+                if (parent && !parent.querySelector('.logo-fallback')) {
+                  const div = document.createElement('div')
+                  div.className = 'logo-fallback w-full h-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-2xl'
+                  div.textContent = 'T'
+                  parent.appendChild(div)
+                }
+              }}
+            />
           </motion.div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">ServingSync POS</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-lg">Thuso</h1>
           <p className="text-sm text-slate-300 mt-1">Multi-shop restaurant management</p>
         </div>
         <Card className="p-6 shadow-2xl border-white/10 bg-slate-900/80 backdrop-blur-xl">

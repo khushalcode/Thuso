@@ -13,12 +13,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useSession } from '@/lib/session'
 import { LoginScreen } from '@/components/auth/LoginScreen'
-import { useInstallCheck } from '@/lib/use-install-check'
 import { GlobalShortcutBar } from '@/components/shared/GlobalShortcutBar'
 import { useShopFetch } from '@/hooks/use-shop-fetch'
-import { startSyncManager } from '@/lib/sync-manager'
-import { initDB } from '@/lib/client-db'
-import { bootstrapSync } from '@/lib/offline-sync'
+import { initDB, persistDBSync } from '@/lib/client-db'
 import CounterMode from '@/components/counter/CounterMode'
 import KitchenMode from '@/components/kitchen/KitchenMode'
 import HistoryMode from '@/components/history/HistoryMode'
@@ -32,33 +29,19 @@ const ADMIN_MODES: Mode[] = ['counter', 'direct', 'kitchen', 'history', 'zomato'
 
 export default function Home() {
   const { user, currentShop, loading } = useSession()
-  const { status: trialStatus, daysLeft } = useInstallCheck()
   const [mode, setMode] = useState<Mode>('home')
   const [dbReady, setDbReady] = useState(false)
   const [dbError, setDbError] = useState<string | null>(null)
 
   // ─── Initialize the SQLite WASM database BEFORE any data access ───
+  // FULLY OFFLINE — no Supabase, no sync, no trial check. The app is
+  // self-contained and stores all data locally in the browser/device.
   useEffect(() => {
     let cancelled = false
     initDB()
       .then(() => {
         if (cancelled) return
         setDbReady(true)
-        // ─── Bootstrap pull from Supabase ───
-        // Pulls all remote changes since the last sync into local SQLite
-        // and drains any locally-pending writes back to Supabase. Runs in
-        // the background — the UI is already interactive at this point.
-        bootstrapSync()
-          .then(({ pulled, pushed }) => {
-            if (pulled > 0 || pushed > 0) {
-              console.log(`[bootstrap] pulled ${pulled} rows, pushed ${pushed} rows from/to Supabase`)
-            }
-            // Notify any open dashboards to refresh their data.
-            if (typeof window !== 'undefined') {
-              window.dispatchEvent(new CustomEvent('supabase-sync-complete'))
-            }
-          })
-          .catch((e) => console.warn('[bootstrap] sync failed (non-fatal):', e))
       })
       .catch((e) => {
         console.error('[page.tsx] DB init failed:', e)
@@ -67,17 +50,29 @@ export default function Home() {
     return () => { cancelled = true }
   }, [])
 
-  // ─── Start sync manager (drains outbox to Supabase when online) ───
+  // ─── Save DB before tab close / app close ──────────────────────────
+  // This fixes the "database error on close" bug. When the user closes
+  // the tab or the app, we force-flush any pending writes to localStorage
+  // (synchronous) so no data is lost. Without this, the 500ms debounce
+  // in persistDB() can leave the last write unsaved.
   useEffect(() => {
-    if (!dbReady) return
-    startSyncManager()
-  }, [dbReady])
-
-  useEffect(() => {
-    if (dbReady && typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('supabase-sync-complete'))
+    const handleBeforeUnload = () => {
+      try {
+        // persistDBSync bypasses the 500ms debounce and saves to
+        // localStorage synchronously — this completes before the tab
+        // closes, so no data is lost.
+        persistDBSync()
+      } catch (e) {
+        console.warn('[page.tsx] save on unload failed:', e)
+      }
     }
-  }, [dbReady])
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    window.addEventListener('pagehide', handleBeforeUnload)
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+      window.removeEventListener('pagehide', handleBeforeUnload)
+    }
+  }, [])
 
   useEffect(() => {
     if (loading || !user) return
@@ -106,18 +101,12 @@ export default function Home() {
   if (dbError) {
     return <DbErrorScreen message={dbError} />
   }
-  if (!dbReady || trialStatus === 'loading') {
+  if (!dbReady) {
     return (
       <div className="min-h-screen flex items-center justify-center img-bg">
         <div className="w-12 h-12 rounded-xl bg-brand-gradient animate-pulse" />
       </div>
     )
-  }
-  if (trialStatus === 'device_locked') {
-    return <DeviceLockedScreen />
-  }
-  if (trialStatus === 'expired') {
-    return <TrialExpiredScreen daysLeft={0} />
   }
   if (loading) {
     return (
@@ -139,7 +128,7 @@ export default function Home() {
     if (mode === 'zomato') return <ZomatoMode onExit={backHome} currentMode="zomato" onNavigate={enterMode} />
   }
 
-  return <HomeScreen mode={mode} onSelect={enterMode} daysLeft={daysLeft} />
+  return <HomeScreen mode={mode} onSelect={enterMode} daysLeft={null} />
 }
 
 const CARD_COLORS: Record<string, { gradient: string; glow: string }> = {
@@ -203,7 +192,7 @@ function HomeScreen({ mode, onSelect, daysLeft }: { mode: Mode; onSelect: (m: Mo
               <UtensilsCrossed className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h1 className="text-sm font-bold text-white">ServingSync POS</h1>
+              <h1 className="text-sm font-bold text-white">Thuso</h1>
               <p className="text-[10px] text-slate-400">{user?.name} · {currentShop?.name}</p>
             </div>
           </div>
@@ -421,7 +410,7 @@ function TrialExpiredScreen({ daysLeft }: { daysLeft: number }) {
         <h1 className="text-2xl font-bold text-white mb-2">Trial Period Over</h1>
         <p className="text-sm text-slate-400 mb-6">Your 365-day trial has ended. Please reinstall the app to start a new trial.</p>
         <Card className="p-6 bg-slate-800/90 border-slate-700">
-          <p className="text-sm text-slate-300 mb-4">To continue using ServingSync POS, uninstall and reinstall the application. This will reset the 365-day trial.</p>
+          <p className="text-sm text-slate-300 mb-4">To continue using Thuso, uninstall and reinstall the application. This will reset the 365-day trial.</p>
           <Button onClick={() => window.location.reload()} className="w-full bg-gradient-to-r from-orange-500 to-rose-500 text-white">Reload App</Button>
         </Card>
       </motion.div>
@@ -438,7 +427,7 @@ function DeviceLockedScreen() {
           <Lock className="w-8 h-8 text-rose-400" />
         </motion.div>
         <h1 className="text-2xl font-bold text-white mb-2">Device Locked</h1>
-        <p className="text-sm text-slate-400 mb-6">This copy of ServingSync POS is locked to another device and cannot be used here.</p>
+        <p className="text-sm text-slate-400 mb-6">This copy of Thuso is locked to another device and cannot be used here.</p>
         <Card className="p-6 bg-slate-800/90 border-slate-700">
           <div className="flex items-start gap-3 mb-4 text-left">
             <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />

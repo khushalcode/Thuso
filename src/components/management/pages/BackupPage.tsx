@@ -12,6 +12,7 @@ import {
 import { toast } from 'sonner'
 import { useShopFetch } from '@/hooks/use-shop-fetch'
 import { downloadExcel, type Sheet } from '@/lib/excel-export'
+import { downloadLatestExcel } from '@/lib/client-db'
 
 export default function BackupPage() {
   const shopFetch = useShopFetch()
@@ -31,7 +32,7 @@ export default function BackupPage() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = `servingsync-backup-${new Date().toISOString().split('T')[0]}.json`
+      a.download = `thuso-backup-${new Date().toISOString().split('T')[0]}.json`
       a.click()
       URL.revokeObjectURL(url)
       toast.success('Backup exported successfully')
@@ -166,7 +167,7 @@ export default function BackupPage() {
         return
       }
       const dateStr = new Date().toISOString().split('T')[0]
-      downloadExcel(sheets, `servingsync-export-${dateStr}`)
+      downloadExcel(sheets, `thuso-export-${dateStr}`)
       toast.success(`Excel exported with ${sheets.length} sheet${sheets.length > 1 ? 's' : ''}`)
     } catch (e: any) {
       console.error(e)
@@ -263,8 +264,21 @@ export default function BackupPage() {
                   Excel
                 </Button>
               </div>
+              {/* ─── Download the persistent Excel database ─────────────
+                  This downloads the latest .xls file that has been
+                  accumulating ALL data in real-time (stored in
+                  IndexedDB, updated after every write). */}
+              <Button
+                onClick={() => downloadLatestExcel()}
+                variant="outline"
+                className="w-full mt-2 border-orange-300 text-orange-700 hover:bg-orange-50"
+              >
+                <FileSpreadsheet className="w-4 h-4 mr-1" />
+                Download Excel Database
+              </Button>
               <p className="text-[10px] text-slate-400 mt-2 text-center">
-                Choose JSON for full backup/restore, Excel for accounting &amp; analysis
+                JSON = backup/restore · Excel = accounting analysis ·<br/>
+                Excel Database = full real-time data export (all tables)
               </p>
             </CardContent>
           </Card>

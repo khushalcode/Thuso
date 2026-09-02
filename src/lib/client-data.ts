@@ -2,7 +2,11 @@
 
 import { query, queryOne, execute, genId, initDB } from './client-db'
 import { isValidKey } from './license-keys'
-import { trackUpsert, trackDelete } from './offline-sync'
+// Offline-only: no-op stubs for the old sync tracking.
+// The app is fully offline now — no Supabase, no sync outbox.
+// These stubs keep the existing call sites working without changes.
+const trackUpsert = (_table: string, _row: any) => {}
+const trackDelete = (_table: string, _id: string) => {}
 
 /**
  * Client-side data access layer
@@ -777,7 +781,7 @@ export const shops = {
   create(data: any) {
     const id = genId()
     execute('INSERT INTO Shop (id, name, code, color, address, phone, gstin, taxRate, currency) VALUES (?,?,?,?,?,?,?,?,?)',
-      [id, data.name, (data.code || data.name.substring(0, 4)).toUpperCase(), data.color || 'orange', data.address || null, data.phone || null, data.gstin || null, data.taxRate || 5, data.currency || 'Rs.'])
+      [id, data.name, (data.code || data.name.substring(0, 4)).toUpperCase(), data.color || 'orange', data.address || null, data.phone || null, data.gstin || null, data.taxRate ?? 0, data.currency || 'Rs.'])
     const created = this.getById(id)
     if (created) trackUpsert('Shop', created)
     return created

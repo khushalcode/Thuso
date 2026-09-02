@@ -19,7 +19,7 @@ model Shop {
   address     String?
   phone       String?
   gstin       String?
-  taxRate     Float    @default(5)
+  taxRate     Float    @default(0)
   serviceRate Float    @default(0)
   currency    String   @default("Rs.")
   color       String   @default("orange") // orange | emerald | violet (theme hint)
@@ -334,7 +334,7 @@ model ShopSetting {
   phone         String?
   email         String?
   gstin         String?
-  taxRate       Float    @default(5)
+  taxRate       Float    @default(0)
   serviceRate   Float    @default(0)
   currency      String   @default("Rs.")
   invoicePrefix String   @default("INV")

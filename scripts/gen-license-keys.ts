@@ -1,5 +1,5 @@
 /**
- * Generate proper license keys for ServingSync POS.
+ * Generate proper license keys for Thuso.
  * Format: SSYNC-XXXX-XXXX-XXXX (alphanumeric, easy to type)
  * Each key is valid for 365 days.
  */
@@ -36,7 +36,7 @@ async function main() {
   }
 
   // Print all keys
-  console.log('=== SERVINGSYNC POS LICENSE KEYS ===')
+  console.log('=== THUSO POS LICENSE KEYS ===')
   console.log('Each key is valid for 365 days from activation.\n')
   keys.forEach((k, i) => {
     console.log(`${String(i + 1).padStart(2, '0')}. ${k}`)
@@ -45,7 +45,7 @@ async function main() {
 
   // Also save to file
   const fs = await import('fs')
-  const fileContent = `ServingSync POS — License Keys
+  const fileContent = `Thuso — License Keys
 Generated: ${new Date().toISOString()}
 Valid: 365 days from activation
 

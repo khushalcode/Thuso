@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────────
-# build-exe.sh — build a desktop app for ServingSync POS (single shop)
+# build-exe.sh — build a desktop app for Thuso (single shop)
 #
 # Picks the right target based on the OS you're running on:
 #   • Linux  → AppImage  (no wine needed)

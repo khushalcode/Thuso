@@ -454,15 +454,19 @@ export default function CounterMode({ onExit, directMode, currentMode, onNavigat
   }
 
   // ----- Save order: close it + create a bill + free the table -----
+  // NOTE: Save Order does NOT apply tax. Tax is only ever charged at
+  // Bill-print time (via BillingDialog). When an order is "saved" without
+  // going through the billing flow we record the bill with tax=0 so the
+  // numbers stay consistent with what was shown to the user.
   const saveOrder = async () => {
     if (!order) return
     setBusy(true)
     try {
       const activeItems = (order.items || []).filter((i) => i.status !== 'cancelled')
       const subtotal = activeItems.reduce((s, i) => s + i.price * i.quantity, 0)
-      const taxRate = (currentShop as any)?.taxRate || 5
-      const taxAmount = Math.round(subtotal * taxRate) / 100
-      const total = subtotal + taxAmount
+      const taxRate = 0
+      const taxAmount = 0
+      const total = subtotal
 
       try {
         await shopFetch('/api/bills', {
@@ -895,9 +899,10 @@ export default function CounterMode({ onExit, directMode, currentMode, onNavigat
       {showSaveConfirm && order && (() => {
         const activeItems = (order.items || []).filter((i) => i.status !== 'cancelled')
         const subtotal = activeItems.reduce((s, i) => s + i.price * i.quantity, 0)
-        const taxRate = (currentShop as any)?.taxRate || 5
-        const taxAmount = Math.round(subtotal * taxRate) / 100
-        const total = subtotal + taxAmount
+        // ─── Save Order does NOT charge tax ───
+        // Tax is only asked at Bill-print time (BillingDialog), so the
+        // Save Confirm dialog just shows subtotal = total.
+        const total = subtotal
         return (
           <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setShowSaveConfirm(false)}>
             <motion.div
@@ -942,10 +947,9 @@ export default function CounterMode({ onExit, directMode, currentMode, onNavigat
                   <span>Subtotal</span>
                   <span className="font-medium">{formatCurrency(subtotal)}</span>
                 </div>
-                <div className="flex justify-between text-slate-600">
-                  <span>Tax ({taxRate}%)</span>
-                  <span className="font-medium">{formatCurrency(taxAmount)}</span>
-                </div>
+                <p className="text-[10px] text-slate-400 italic">
+                  Tax is not applied on Save. Use <span className="font-semibold">Bill</span> to charge tax at print time.
+                </p>
                 <div className="flex justify-between pt-2 border-t border-slate-200 mt-2">
                   <span className="font-bold text-slate-900">Total</span>
                   <span className="font-bold text-blue-600 text-base">{formatCurrency(total)}</span>

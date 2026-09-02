@@ -10,7 +10,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$utensils$2d$crossed$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UtensilsCrossed$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/utensils-crossed.js [app-client] (ecmascript) <export default as UtensilsCrossed>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/mail.js [app-client] (ecmascript) <export default as Mail>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/lock.js [app-client] (ecmascript) <export default as Lock>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-client] (ecmascript) <export default as ArrowRight>");
@@ -120,12 +119,25 @@ function LoginScreen({ onLoggedOut }) {
                                     type: 'spring',
                                     delay: 0.2
                                 },
-                                className: "w-16 h-16 rounded-2xl bg-brand-gradient flex items-center justify-center shadow-2xl mx-auto mb-3",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$utensils$2d$crossed$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UtensilsCrossed$3e$__["UtensilsCrossed"], {
-                                    className: "w-8 h-8 text-white"
+                                className: "w-20 h-20 rounded-2xl bg-white/95 shadow-2xl mx-auto mb-3 flex items-center justify-center overflow-hidden ring-1 ring-white/40",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    src: "/logo.png",
+                                    alt: "Thuso logo",
+                                    className: "w-full h-full object-contain",
+                                    onError: (e)=>{
+                                        const target = e.currentTarget;
+                                        target.style.display = 'none';
+                                        const parent = target.parentElement;
+                                        if (parent && !parent.querySelector('.logo-fallback')) {
+                                            const div = document.createElement('div');
+                                            div.className = 'logo-fallback w-full h-full bg-brand-gradient flex items-center justify-center text-white font-extrabold text-2xl';
+                                            div.textContent = 'T';
+                                            parent.appendChild(div);
+                                        }
+                                    }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                    lineNumber: 59,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
@@ -138,7 +150,7 @@ function LoginScreen({ onLoggedOut }) {
                                 children: "Thuso"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                lineNumber: 61,
+                                lineNumber: 82,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -146,7 +158,7 @@ function LoginScreen({ onLoggedOut }) {
                                 children: "Multi-shop restaurant management"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                lineNumber: 62,
+                                lineNumber: 83,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -170,7 +182,7 @@ function LoginScreen({ onLoggedOut }) {
                                             children: "Email"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                            lineNumber: 67,
+                                            lineNumber: 88,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -180,7 +192,7 @@ function LoginScreen({ onLoggedOut }) {
                                                     className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                    lineNumber: 69,
+                                                    lineNumber: 90,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -194,19 +206,19 @@ function LoginScreen({ onLoggedOut }) {
                                                     autoFocus: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                    lineNumber: 70,
+                                                    lineNumber: 91,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 89,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                    lineNumber: 66,
+                                    lineNumber: 87,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -218,7 +230,7 @@ function LoginScreen({ onLoggedOut }) {
                                             children: "Password"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 95,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -228,7 +240,7 @@ function LoginScreen({ onLoggedOut }) {
                                                     className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                    lineNumber: 76,
+                                                    lineNumber: 97,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -241,7 +253,7 @@ function LoginScreen({ onLoggedOut }) {
                                                     required: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 98,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -252,30 +264,30 @@ function LoginScreen({ onLoggedOut }) {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                        lineNumber: 78,
+                                                        lineNumber: 99,
                                                         columnNumber: 180
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                        lineNumber: 78,
+                                                        lineNumber: 99,
                                                         columnNumber: 213
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                    lineNumber: 78,
+                                                    lineNumber: 99,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                            lineNumber: 75,
+                                            lineNumber: 96,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 94,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -298,19 +310,19 @@ function LoginScreen({ onLoggedOut }) {
                                                 className: "w-4 h-4 shrink-0"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                lineNumber: 84,
+                                                lineNumber: 105,
                                                 columnNumber: 19
                                             }, this),
                                             error
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                        lineNumber: 83,
+                                        lineNumber: 104,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 102,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -323,14 +335,14 @@ function LoginScreen({ onLoggedOut }) {
                                                 className: "w-4 h-4 mr-1.5 animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 110,
                                                 columnNumber: 28
                                             }, this),
                                             " Signing in…"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                        lineNumber: 89,
+                                        lineNumber: 110,
                                         columnNumber: 26
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                         children: [
@@ -339,29 +351,29 @@ function LoginScreen({ onLoggedOut }) {
                                                 className: "w-4 h-4 ml-1.5"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 110,
                                                 columnNumber: 107
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                        lineNumber: 89,
+                                        lineNumber: 110,
                                         columnNumber: 97
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                                    lineNumber: 88,
+                                    lineNumber: 109,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                            lineNumber: 65,
+                            lineNumber: 86,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                        lineNumber: 64,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -369,7 +381,7 @@ function LoginScreen({ onLoggedOut }) {
                         children: "Super Admin login · Multi-shop restaurant management"
                     }, void 0, false, {
                         fileName: "[project]/src/components/auth/LoginScreen.tsx",
-                        lineNumber: 93,
+                        lineNumber: 114,
                         columnNumber: 9
                     }, this)
                 ]
@@ -462,7 +474,10 @@ const PAYMENTS = [
 ];
 function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAfterBill }) {
     _s();
-    const [taxRate, setTaxRate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(5);
+    // ─── Tax is NO LONGER auto-injected from shop settings ───
+    // The cashier must explicitly enter the tax % at bill-print time.
+    // Defaults to 0 so the user has to consciously opt-in to charging tax.
+    const [taxRate, setTaxRate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [discount, setDiscount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [serviceCharge, setServiceCharge] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     const [paymentMode, setPaymentMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('cash');
@@ -472,7 +487,9 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "BillingDialog.useEffect": ()=>{
             if (open) {
-                setTaxRate(settings?.taxRate ?? 5);
+                // Tax is no longer pulled from settings — the cashier enters it
+                // manually each time they generate a bill ("ask tax at bill print time").
+                setTaxRate(0);
                 setServiceCharge(settings?.serviceRate ?? 0);
                 setDiscount(0);
                 setPaymentMode('cash');
@@ -546,7 +563,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                 children: "Generate Bill"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 107,
+                                                lineNumber: 112,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -559,13 +576,13 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 108,
+                                                lineNumber: 113,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 106,
+                                        lineNumber: 111,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -575,18 +592,18 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                            lineNumber: 113,
+                                            lineNumber: 118,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 112,
+                                        lineNumber: 117,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                lineNumber: 105,
+                                lineNumber: 110,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -606,7 +623,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 123,
+                                                        lineNumber: 128,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -614,18 +631,18 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(it.price * it.quantity)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 126,
+                                                        lineNumber: 131,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, it.id, true, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 122,
+                                                lineNumber: 127,
                                                 columnNumber: 21
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 120,
+                                        lineNumber: 125,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -638,10 +655,10 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
                                                                 className: "text-xs text-slate-500",
-                                                                children: "Tax %"
+                                                                children: "Tax % (optional)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 137,
+                                                                lineNumber: 142,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -650,16 +667,17 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 onChange: (e)=>setTaxRate(Number(e.target.value) || 0),
                                                                 min: 0,
                                                                 step: "0.5",
+                                                                placeholder: "0",
                                                                 className: "mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 138,
+                                                                lineNumber: 143,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 136,
+                                                        lineNumber: 141,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -669,7 +687,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 children: "Discount"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 148,
+                                                                lineNumber: 154,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -680,13 +698,13 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 className: "mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 149,
+                                                                lineNumber: 155,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 147,
+                                                        lineNumber: 153,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -696,7 +714,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 children: "Service"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 158,
+                                                                lineNumber: 164,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -707,19 +725,19 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 className: "mt-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 159,
+                                                                lineNumber: 165,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 157,
+                                                        lineNumber: 163,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 135,
+                                                lineNumber: 140,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -730,7 +748,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         value: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(subtotal)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 171,
+                                                        lineNumber: 177,
                                                         columnNumber: 21
                                                     }, this),
                                                     taxRate > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Row, {
@@ -738,7 +756,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         value: `+ ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(taxAmount)}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 172,
+                                                        lineNumber: 178,
                                                         columnNumber: 37
                                                     }, this),
                                                     serviceCharge > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Row, {
@@ -746,7 +764,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         value: `+ ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(serviceCharge)}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 173,
+                                                        lineNumber: 179,
                                                         columnNumber: 43
                                                     }, this),
                                                     discount > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Row, {
@@ -754,7 +772,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         value: `- ${(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(discount)}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 174,
+                                                        lineNumber: 180,
                                                         columnNumber: 38
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -765,7 +783,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 children: "Total Payable"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 176,
+                                                                lineNumber: 182,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -773,19 +791,19 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(total)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 177,
+                                                                lineNumber: 183,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 175,
+                                                        lineNumber: 181,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 170,
+                                                lineNumber: 176,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -795,7 +813,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                         children: "Payment Mode"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 183,
+                                                        lineNumber: 189,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -808,7 +826,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                        lineNumber: 195,
+                                                                        lineNumber: 201,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -816,36 +834,36 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                                         children: p.label
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                        lineNumber: 196,
+                                                                        lineNumber: 202,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, p.mode, true, {
                                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                                lineNumber: 186,
+                                                                lineNumber: 192,
                                                                 columnNumber: 25
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                        lineNumber: 184,
+                                                        lineNumber: 190,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 188,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 134,
+                                        lineNumber: 139,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                lineNumber: 118,
+                                lineNumber: 123,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -858,7 +876,7 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                         children: "Cancel"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 206,
+                                        lineNumber: 212,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -871,41 +889,41 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                                                     className: "w-4 h-4 mr-1.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 222,
                                                     columnNumber: 23
                                                 }, this),
                                                 " Confirm & Print"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 221,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                        lineNumber: 209,
+                                        lineNumber: 215,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                                lineNumber: 205,
+                                lineNumber: 211,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                        lineNumber: 97,
+                        lineNumber: 102,
                         columnNumber: 13
                     }, this)
                 }, "billing-dialog", false, {
                     fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                    lineNumber: 89,
+                    lineNumber: 94,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                lineNumber: 87,
+                lineNumber: 92,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$2f$PrintPreview$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PrintPreview"], {
@@ -929,22 +947,22 @@ function BillingDialog({ open, order, billNo, settings, onClose, onConfirm, onAf
                     style: settings
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                    lineNumber: 244,
+                    lineNumber: 250,
                     columnNumber: 27
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                lineNumber: 230,
+                lineNumber: 236,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-        lineNumber: 86,
+        lineNumber: 91,
         columnNumber: 5
     }, this);
 }
-_s(BillingDialog, "HDTWPeF/gxT6yOdZ1LABzh1CuLI=");
+_s(BillingDialog, "jUrxTK/qwxC2vnu9Si8igCs6LUg=");
 _c = BillingDialog;
 function Row({ label, value }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -955,7 +973,7 @@ function Row({ label, value }) {
                 children: label
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                lineNumber: 253,
+                lineNumber: 259,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -963,13 +981,13 @@ function Row({ label, value }) {
                 children: value
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/BillingDialog.tsx",
-                lineNumber: 254,
+                lineNumber: 260,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/counter/BillingDialog.tsx",
-        lineNumber: 252,
+        lineNumber: 258,
         columnNumber: 5
     }, this);
 }
@@ -1568,15 +1586,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
         }
     };
     // ----- Save order: close it + create a bill + free the table -----
+    // NOTE: Save Order does NOT apply tax. Tax is only ever charged at
+    // Bill-print time (via BillingDialog). When an order is "saved" without
+    // going through the billing flow we record the bill with tax=0 so the
+    // numbers stay consistent with what was shown to the user.
     const saveOrder = async ()=>{
         if (!order) return;
         setBusy(true);
         try {
             const activeItems = (order.items || []).filter((i)=>i.status !== 'cancelled');
             const subtotal = activeItems.reduce((s, i)=>s + i.price * i.quantity, 0);
-            const taxRate = currentShop?.taxRate || 5;
-            const taxAmount = Math.round(subtotal * taxRate) / 100;
-            const total = subtotal + taxAmount;
+            const taxRate = 0;
+            const taxAmount = 0;
+            const total = subtotal;
             try {
                 await shopFetch('/api/bills', {
                     method: 'POST',
@@ -1714,12 +1736,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                 className: "w-8 h-8 animate-spin text-orange-500"
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 599,
+                lineNumber: 603,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/counter/CounterMode.tsx",
-            lineNumber: 598,
+            lineNumber: 602,
             columnNumber: 7
         }, this);
     }
@@ -1767,7 +1789,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                     isDirect: directMode
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 631,
+                    lineNumber: 635,
                     columnNumber: 9
                 }, this),
                 onNavigate && currentMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$2f$GlobalShortcutBar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GlobalShortcutBar"], {
@@ -1775,7 +1797,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                     onNavigate: onNavigate
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 632,
+                    lineNumber: 636,
                     columnNumber: 39
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -1791,7 +1813,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             children: "Tables"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 636,
+                                            lineNumber: 640,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1804,13 +1826,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 637,
+                                            lineNumber: 641,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 635,
+                                    lineNumber: 639,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1824,14 +1846,14 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                     className: "w-4 h-4 mr-1.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                    lineNumber: 646,
+                                                    lineNumber: 650,
                                                     columnNumber: 17
                                                 }, this),
                                                 "Direct Order / Takeaway"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 642,
+                                            lineNumber: 646,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1841,19 +1863,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             children: "Refresh"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 649,
+                                            lineNumber: 653,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 641,
+                                    lineNumber: 645,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 634,
+                            lineNumber: 638,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$2f$PendingOrdersSubTab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PendingOrdersSubTab"], {
@@ -1865,7 +1887,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                             }
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 656,
+                            lineNumber: 660,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$counter$2f$TableGrid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableGrid"], {
@@ -1873,19 +1895,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                             onSelectTable: openTable
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 662,
+                            lineNumber: 666,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 633,
+                    lineNumber: 637,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/counter/CounterMode.tsx",
-            lineNumber: 630,
+            lineNumber: 634,
             columnNumber: 7
         }, this);
     }
@@ -1916,7 +1938,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                 className: "w-4 h-4 text-slate-700 shrink-0"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 683,
+                                lineNumber: 687,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1924,7 +1946,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                 children: "Current Order"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 684,
+                                lineNumber: 688,
                                 columnNumber: 11
                             }, this),
                             order && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1935,7 +1957,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ORDER_STATUS_LABELS"][order.status]
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 687,
+                                        lineNumber: 691,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1948,24 +1970,24 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 690,
+                                        lineNumber: 694,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 686,
+                                lineNumber: 690,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 682,
+                        lineNumber: 686,
                         columnNumber: 9
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 681,
+                    lineNumber: 685,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1981,7 +2003,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                             title: "Guests"
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 700,
+                            lineNumber: 704,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -1992,13 +2014,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                             className: desktop ? 'h-8 flex-1 min-w-0 text-xs px-2' : 'h-7 w-20 text-[11px] px-2'
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 709,
+                            lineNumber: 713,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 699,
+                    lineNumber: 703,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2013,19 +2035,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                         canEdit: canEdit
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 721,
+                        lineNumber: 725,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "py-4 text-center text-xs text-slate-400",
                         children: "No active order — start one by adding items from the menu."
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 731,
+                        lineNumber: 735,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 719,
+                    lineNumber: 723,
                     columnNumber: 7
                 }, this),
                 order && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2038,12 +2060,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                         className: "h-8 text-xs"
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 738,
+                        lineNumber: 742,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 737,
+                    lineNumber: 741,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2058,14 +2080,14 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     className: "w-4 h-4 mr-1.5"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 755,
+                                    lineNumber: 759,
                                     columnNumber: 11
                                 }, this),
                                 " Save"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 750,
+                            lineNumber: 754,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2077,14 +2099,14 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     className: "w-4 h-4 mr-1.5"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 762,
+                                    lineNumber: 766,
                                     columnNumber: 11
                                 }, this),
                                 order?.status === 'open' ? 'Send KOT' : 'Re-print'
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 757,
+                            lineNumber: 761,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2096,20 +2118,20 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     className: "w-4 h-4 mr-1.5"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 770,
+                                    lineNumber: 774,
                                     columnNumber: 11
                                 }, this),
                                 " Bill"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 765,
+                            lineNumber: 769,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 749,
+                    lineNumber: 753,
                     columnNumber: 7
                 }, this),
                 order && (order.items || []).length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2125,14 +2147,14 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     className: "w-3 h-3 mr-1"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 783,
+                                    lineNumber: 787,
                                     columnNumber: 13
                                 }, this),
                                 " Delete Order"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 777,
+                            lineNumber: 781,
                             columnNumber: 11
                         }, this),
                         (order.items || []).some((i)=>i.status === 'ready') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2148,26 +2170,26 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     className: "w-3 h-3 mr-1"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 795,
+                                    lineNumber: 799,
                                     columnNumber: 15
                                 }, this),
                                 " Mark Served"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 786,
+                            lineNumber: 790,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 776,
+                    lineNumber: 780,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/counter/CounterMode.tsx",
-            lineNumber: 679,
+            lineNumber: 683,
             columnNumber: 5
         }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2186,7 +2208,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                         isDirect: directMode
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 806,
+                        lineNumber: 810,
                         columnNumber: 9
                     }, this),
                     onNavigate && currentMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$2f$GlobalShortcutBar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GlobalShortcutBar"], {
@@ -2194,13 +2216,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                         onNavigate: onNavigate
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 815,
+                        lineNumber: 819,
                         columnNumber: 39
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 805,
+                lineNumber: 809,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -2219,7 +2241,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             children: "Menu"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 827,
+                                            lineNumber: 831,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -2231,13 +2253,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 828,
+                                            lineNumber: 832,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 826,
+                                    lineNumber: 830,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2253,18 +2275,18 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         ].includes(order?.status || '')
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 833,
+                                        lineNumber: 837,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 832,
+                                    lineNumber: 836,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 825,
+                            lineNumber: 829,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2272,18 +2294,18 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                             children: renderOrderPanel(true)
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 843,
+                            lineNumber: 847,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 823,
+                    lineNumber: 827,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 820,
+                lineNumber: 824,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2293,12 +2315,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                     children: renderOrderPanel(false)
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 854,
+                    lineNumber: 858,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 853,
+                lineNumber: 857,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$shared$2f$PrintPreview$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PrintPreview"], {
@@ -2321,12 +2343,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                     style: settings
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 870,
+                    lineNumber: 874,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 860,
+                lineNumber: 864,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$counter$2f$BillingDialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BillingDialog"], {
@@ -2342,15 +2364,16 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 879,
+                lineNumber: 883,
                 columnNumber: 7
             }, this),
             showSaveConfirm && order && (()=>{
                 const activeItems = (order.items || []).filter((i)=>i.status !== 'cancelled');
                 const subtotal = activeItems.reduce((s, i)=>s + i.price * i.quantity, 0);
-                const taxRate = currentShop?.taxRate || 5;
-                const taxAmount = Math.round(subtotal * taxRate) / 100;
-                const total = subtotal + taxAmount;
+                // ─── Save Order does NOT charge tax ───
+                // Tax is only asked at Bill-print time (BillingDialog), so the
+                // Save Confirm dialog just shows subtotal = total.
+                const total = subtotal;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4",
                     onClick: ()=>setShowSaveConfirm(false),
@@ -2375,12 +2398,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             className: "w-5 h-5 text-blue-600"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 911,
+                                            lineNumber: 916,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 910,
+                                        lineNumber: 915,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2390,7 +2413,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 children: "Confirm & Save Order"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 914,
+                                                lineNumber: 919,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2403,19 +2426,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 915,
+                                                lineNumber: 920,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 913,
+                                        lineNumber: 918,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 909,
+                                lineNumber: 914,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2426,7 +2449,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         children: "Order Items"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 922,
+                                        lineNumber: 927,
                                         columnNumber: 17
                                     }, this),
                                     activeItems.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2434,7 +2457,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         children: "No items in order"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 924,
+                                        lineNumber: 929,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "space-y-1.5",
@@ -2453,7 +2476,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                                lineNumber: 930,
+                                                                lineNumber: 935,
                                                                 columnNumber: 27
                                                             }, this),
                                                             it.notes && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2464,13 +2487,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                                lineNumber: 931,
+                                                                lineNumber: 936,
                                                                 columnNumber: 40
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                        lineNumber: 929,
+                                                        lineNumber: 934,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2478,24 +2501,24 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(it.price * it.quantity)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                        lineNumber: 933,
+                                                        lineNumber: 938,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, it.id, true, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 928,
+                                                lineNumber: 933,
                                                 columnNumber: 23
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 926,
+                                        lineNumber: 931,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 921,
+                                lineNumber: 926,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2508,7 +2531,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 children: "Subtotal"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 942,
+                                                lineNumber: 947,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2516,41 +2539,32 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(subtotal)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 943,
+                                                lineNumber: 948,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 941,
+                                        lineNumber: 946,
                                         columnNumber: 17
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex justify-between text-slate-600",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-[10px] text-slate-400 italic",
                                         children: [
+                                            "Tax is not applied on Save. Use ",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: [
-                                                    "Tax (",
-                                                    taxRate,
-                                                    "%)"
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 946,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-medium",
-                                                children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(taxAmount)
+                                                className: "font-semibold",
+                                                children: "Bill"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 947,
-                                                columnNumber: 19
-                                            }, this)
+                                                lineNumber: 951,
+                                                columnNumber: 51
+                                            }, this),
+                                            " to charge tax at print time."
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 945,
+                                        lineNumber: 950,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2561,7 +2575,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 children: "Total"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 950,
+                                                lineNumber: 954,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2569,19 +2583,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(total)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                lineNumber: 951,
+                                                lineNumber: 955,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 949,
+                                        lineNumber: 953,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 940,
+                                lineNumber: 945,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2594,7 +2608,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         children: "Cancel"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 956,
+                                        lineNumber: 960,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2610,14 +2624,14 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                     className: "w-4 h-4 mr-1.5 animate-spin"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                    lineNumber: 967,
+                                                    lineNumber: 971,
                                                     columnNumber: 29
                                                 }, this),
                                                 " Saving…"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 967,
+                                            lineNumber: 971,
                                             columnNumber: 27
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                             children: [
@@ -2625,36 +2639,36 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                                     className: "w-4 h-4 mr-1.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                                    lineNumber: 967,
+                                                    lineNumber: 971,
                                                     columnNumber: 96
                                                 }, this),
                                                 " Confirm & Save"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 967,
+                                            lineNumber: 971,
                                             columnNumber: 94
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 959,
+                                        lineNumber: 963,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 955,
+                                lineNumber: 959,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                        lineNumber: 903,
+                        lineNumber: 908,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 902,
+                    lineNumber: 907,
                     columnNumber: 11
                 }, this);
             })(),
@@ -2682,12 +2696,12 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                         className: "w-5 h-5 text-rose-600"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                        lineNumber: 986,
+                                        lineNumber: 990,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 985,
+                                    lineNumber: 989,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2697,7 +2711,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             children: "Delete Order?"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 989,
+                                            lineNumber: 993,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2705,19 +2719,19 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             children: "This action cannot be undone"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 990,
+                                            lineNumber: 994,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 988,
+                                    lineNumber: 992,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 984,
+                            lineNumber: 988,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2728,7 +2742,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     children: order?.table?.number === 0 ? 'Direct Order' : `Table ${order?.table?.number}`
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 994,
+                                    lineNumber: 998,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2740,13 +2754,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 997,
+                                    lineNumber: 1001,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 993,
+                            lineNumber: 997,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2757,7 +2771,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     children: "Reason for deletion *"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1000,
+                                    lineNumber: 1004,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -2768,13 +2782,13 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     autoFocus: true
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1001,
+                                    lineNumber: 1005,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 999,
+                            lineNumber: 1003,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2790,7 +2804,7 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1010,
+                                    lineNumber: 1014,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2803,37 +2817,37 @@ function CounterMode({ onExit, directMode, currentMode, onNavigate }) {
                                             className: "w-4 h-4 mr-1.5"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 1019,
+                                            lineNumber: 1023,
                                             columnNumber: 17
                                         }, this),
                                         " Delete"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1013,
+                                    lineNumber: 1017,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1009,
+                            lineNumber: 1013,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 978,
+                    lineNumber: 982,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                lineNumber: 977,
+                lineNumber: 981,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/counter/CounterMode.tsx",
-        lineNumber: 804,
+        lineNumber: 808,
         columnNumber: 5
     }, this);
 }
@@ -2886,7 +2900,7 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                     className: "w-4 h-4 mr-1"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1060,
+                                    lineNumber: 1064,
                                     columnNumber: 13
                                 }, this),
                                 " ",
@@ -2895,20 +2909,20 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                     children: backLabel
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1060,
+                                    lineNumber: 1064,
                                     columnNumber: 52
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1059,
+                            lineNumber: 1063,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "hidden md:block w-px h-6 bg-slate-200"
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1062,
+                            lineNumber: 1066,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2917,12 +2931,12 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                 className: "w-5 h-5 text-white"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                lineNumber: 1064,
+                                lineNumber: 1068,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1063,
+                            lineNumber: 1067,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2933,7 +2947,7 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                     children: displayTitle
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1067,
+                                    lineNumber: 1071,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2948,25 +2962,25 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                            lineNumber: 1070,
+                                            lineNumber: 1074,
                                             columnNumber: 31
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1068,
+                                    lineNumber: 1072,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1066,
+                            lineNumber: 1070,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 1058,
+                    lineNumber: 1062,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2985,12 +2999,12 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                                     children: s.name
                                 }, s.id, false, {
                                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                                    lineNumber: 1087,
+                                    lineNumber: 1091,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1077,
+                            lineNumber: 1081,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -2999,7 +3013,7 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                             children: user?.name
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1091,
+                            lineNumber: 1095,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3010,24 +3024,24 @@ function Header({ onExit, role, connected, backLabel = 'Exit', currentMode, onNa
                             children: "Sign out"
                         }, void 0, false, {
                             fileName: "[project]/src/components/counter/CounterMode.tsx",
-                            lineNumber: 1094,
+                            lineNumber: 1098,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/counter/CounterMode.tsx",
-                    lineNumber: 1074,
+                    lineNumber: 1078,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/counter/CounterMode.tsx",
-            lineNumber: 1057,
+            lineNumber: 1061,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/counter/CounterMode.tsx",
-        lineNumber: 1056,
+        lineNumber: 1060,
         columnNumber: 5
     }, this);
 }
@@ -3058,6 +3072,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-client] (ecmascript) <export default as Check>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$minus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Minus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/minus.js [app-client] (ecmascript) <export default as Minus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$grid$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutGrid$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/layout-grid.js [app-client] (ecmascript) <export default as LayoutGrid>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/card.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/badge.tsx [app-client] (ecmascript)");
@@ -3077,6 +3092,8 @@ var _s = __turbopack_context__.k.signature();
 function MenuPicker({ items, onAdd, disabled, orderItems }) {
     _s();
     const [search, setSearch] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    /** Active category filter — 'all' shows every category, otherwise only the picked one. */ const [activeCategory, setActiveCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('all');
+    /** Ref to the category tab strip — used to scroll the active tab into view on small screens. */ const tabsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Build a map of menuItemId → total quantity (only count non-cancelled items)
     const orderQtyMap = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "MenuPicker.useMemo[orderQtyMap]": ()=>{
@@ -3090,6 +3107,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
     }["MenuPicker.useMemo[orderQtyMap]"], [
         orderItems
     ]);
+    // Group items by category (filtered by search text)
     const grouped = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "MenuPicker.useMemo[grouped]": ()=>{
             const map = new Map();
@@ -3109,6 +3127,54 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
         items,
         search
     ]);
+    // Stable list of categories — used to render the top tab bar.
+    // Built from ALL items (not the search-filtered list) so the tabs don't
+    // disappear/jump around as the user types in the search box.
+    const categories = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "MenuPicker.useMemo[categories]": ()=>{
+            const set = new Set();
+            items.forEach({
+                "MenuPicker.useMemo[categories]": (i)=>set.add(i.category)
+            }["MenuPicker.useMemo[categories]"]);
+            return Array.from(set).sort({
+                "MenuPicker.useMemo[categories]": (a, b)=>a.localeCompare(b)
+            }["MenuPicker.useMemo[categories]"]);
+        }
+    }["MenuPicker.useMemo[categories]"], [
+        items
+    ]);
+    // Auto-select the first available category if the current selection
+    // disappears from the filtered list (e.g. user picked "Pizza" then typed
+    // a search term that matches no pizza).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "MenuPicker.useEffect": ()=>{
+            if (activeCategory === 'all') return;
+            if (grouped.length === 0) return;
+            const stillThere = grouped.some({
+                "MenuPicker.useEffect.stillThere": ([cat])=>cat === activeCategory
+            }["MenuPicker.useEffect.stillThere"]);
+            if (!stillThere) setActiveCategory('all');
+        }
+    }["MenuPicker.useEffect"], [
+        grouped,
+        activeCategory
+    ]);
+    // Scroll the active tab into view inside the horizontal strip (mobile).
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "MenuPicker.useEffect": ()=>{
+            if (!tabsRef.current) return;
+            const el = tabsRef.current.querySelector(`[data-cat="${activeCategory}"]`);
+            if (el) el.scrollIntoView({
+                behavior: 'smooth',
+                inline: 'center',
+                block: 'nearest'
+            });
+        }
+    }["MenuPicker.useEffect"], [
+        activeCategory
+    ]);
+    // Visible groups depend on the active category filter
+    const visibleGrouped = activeCategory === 'all' ? grouped : grouped.filter(([cat])=>cat === activeCategory);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex flex-col h-full",
         children: [
@@ -3119,7 +3185,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                         className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                        lineNumber: 49,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3129,19 +3195,76 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                         className: "pl-9 bg-white/70 backdrop-blur-md border-white/30 shadow-sm"
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                        lineNumber: 50,
+                        lineNumber: 87,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                lineNumber: 48,
+                lineNumber: 85,
                 columnNumber: 7
+            }, this),
+            categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: tabsRef,
+                className: "flex items-center gap-1.5 overflow-x-auto thin-scrollbar pb-2 mb-2 shrink-0 -mx-1 px-1",
+                role: "tablist",
+                "aria-label": "Menu categories",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "button",
+                        "data-cat": "all",
+                        onClick: ()=>setActiveCategory('all'),
+                        className: `shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${activeCategory === 'all' ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-md' : 'bg-white/80 text-slate-700 border-white/40 hover:bg-white'}`,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$layout$2d$grid$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LayoutGrid$3e$__["LayoutGrid"], {
+                                className: "w-3 h-3"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/counter/MenuPicker.tsx",
+                                lineNumber: 113,
+                                columnNumber: 13
+                            }, this),
+                            "All"
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/counter/MenuPicker.tsx",
+                        lineNumber: 103,
+                        columnNumber: 11
+                    }, this),
+                    categories.map((cat)=>{
+                        const count = items.filter((i)=>i.category === cat).length;
+                        const isActive = activeCategory === cat;
+                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                            type: "button",
+                            "data-cat": cat,
+                            onClick: ()=>setActiveCategory(isActive ? 'all' : cat),
+                            className: `shrink-0 inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${isActive ? 'bg-gradient-to-r from-orange-500 to-rose-500 text-white border-transparent shadow-md' : 'bg-white/80 text-slate-700 border-white/40 hover:bg-white'}`,
+                            children: [
+                                cat,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: `text-[9px] font-bold px-1 rounded-full ${isActive ? 'bg-white/25 text-white' : 'bg-slate-100 text-slate-500'}`,
+                                    children: count
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/counter/MenuPicker.tsx",
+                                    lineNumber: 132,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, cat, true, {
+                            fileName: "[project]/src/components/counter/MenuPicker.tsx",
+                            lineNumber: 120,
+                            columnNumber: 15
+                        }, this);
+                    })
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/counter/MenuPicker.tsx",
+                lineNumber: 97,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "overflow-y-auto flex-1 pr-1 space-y-4 thin-scrollbar",
                 children: [
-                    grouped.map(([category, catItems])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    visibleGrouped.map(([category, catItems])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex items-center gap-2 mb-2 sticky top-0 z-10 py-1.5 px-2 rounded-lg bg-white/80 backdrop-blur-md shadow-sm border border-white/30",
@@ -3151,7 +3274,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                             children: category
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 151,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3163,13 +3286,13 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                            lineNumber: 65,
+                                            lineNumber: 152,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 150,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3214,14 +3337,14 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 92,
+                                                                lineNumber: 179,
                                                                 columnNumber: 27
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: "text-2xl",
                                                                 children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$menu$2d$images$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getItemEmoji"])(item.name)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 109,
+                                                                lineNumber: 196,
                                                                 columnNumber: 27
                                                             }, this),
                                                             isSelected ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3241,12 +3364,12 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                             strokeWidth: 3
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                            lineNumber: 125,
+                                                                            lineNumber: 212,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                        lineNumber: 115,
+                                                                        lineNumber: 202,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3254,7 +3377,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                         children: qty
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                        lineNumber: 127,
+                                                                        lineNumber: 214,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3270,18 +3393,18 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                             strokeWidth: 3
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                            lineNumber: 137,
+                                                                            lineNumber: 224,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                        lineNumber: 128,
+                                                                        lineNumber: 215,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 114,
+                                                                lineNumber: 201,
                                                                 columnNumber: 27
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "absolute top-1 right-1 w-5 h-5 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm",
@@ -3289,12 +3412,12 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                     className: "w-3 h-3 text-slate-600"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                    lineNumber: 142,
+                                                                    lineNumber: 229,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 141,
+                                                                lineNumber: 228,
                                                                 columnNumber: 27
                                                             }, this),
                                                             isSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3304,12 +3427,12 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                     strokeWidth: 3
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                    lineNumber: 149,
+                                                                    lineNumber: 236,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 148,
+                                                                lineNumber: 235,
                                                                 columnNumber: 27
                                                             }, this),
                                                             !item.available && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3320,18 +3443,18 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                     children: "NA"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                    lineNumber: 155,
+                                                                    lineNumber: 242,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 154,
+                                                                lineNumber: 241,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                        lineNumber: 90,
+                                                        lineNumber: 177,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3342,7 +3465,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                 children: item.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 161,
+                                                                lineNumber: 248,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3353,7 +3476,7 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                         children: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$format$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["formatCurrency"])(item.price)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                        lineNumber: 163,
+                                                                        lineNumber: 250,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3361,13 +3484,13 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                         children: item.unit
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                        lineNumber: 164,
+                                                                        lineNumber: 251,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 162,
+                                                                lineNumber: 249,
                                                                 columnNumber: 25
                                                             }, this),
                                                             isSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3384,65 +3507,65 @@ function MenuPicker({ items, onAdd, disabled, orderItems }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                    lineNumber: 169,
+                                                                    lineNumber: 256,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                                lineNumber: 168,
+                                                                lineNumber: 255,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                        lineNumber: 160,
+                                                        lineNumber: 247,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                                lineNumber: 79,
+                                                lineNumber: 166,
                                                 columnNumber: 21
                                             }, this)
                                         }, item.id, false, {
                                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 160,
                                             columnNumber: 19
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 155,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, category, true, {
                             fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                            lineNumber: 61,
+                            lineNumber: 148,
                             columnNumber: 11
                         }, this)),
-                    grouped.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    visibleGrouped.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center py-8 text-sm text-slate-400",
                         children: "No items match your search"
                     }, void 0, false, {
                         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                        lineNumber: 183,
+                        lineNumber: 270,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/counter/MenuPicker.tsx",
-                lineNumber: 59,
+                lineNumber: 146,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/counter/MenuPicker.tsx",
-        lineNumber: 46,
+        lineNumber: 83,
         columnNumber: 5
     }, this);
 }
-_s(MenuPicker, "ogsp6TB4euaXhdZX39E81hgmM8Y=");
+_s(MenuPicker, "IGNjp26n/ifiCduY05scWjCdv3k=");
 _c = MenuPicker;
 function cardGlow(category) {
     const map = {

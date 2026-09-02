@@ -19,8 +19,8 @@ import { useState, useEffect } from 'react'
  * So even if someone copies localStorage to a different device, the
  * recomputed fingerprint won't match → blocked.
  */
-const INSTALL_KEY = 'servingsync-install-date'
-const FINGERPRINT_KEY = 'servingsync-device-fingerprint'
+const INSTALL_KEY = 'thuso-install-date'
+const FINGERPRINT_KEY = 'thuso-device-fingerprint'
 const TRIAL_DAYS = 365
 
 // ─── Device fingerprint computation ───────────────────────────
@@ -64,7 +64,7 @@ async function computeFingerprint(): Promise<string> {
 // ─── IndexedDB persistence (redundant backup of fingerprint) ──
 function openLockDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open('servingsync-lock', 1)
+    const req = indexedDB.open('thuso-lock', 1)
     req.onupgradeneeded = () => req.result.createObjectStore('lock')
     req.onsuccess = () => resolve(req.result)
     req.onerror = () => reject(req.error)

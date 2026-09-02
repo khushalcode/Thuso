@@ -490,7 +490,7 @@ function ShopForm({ initial, saving, onSubmit, onCancel }: ShopFormProps) {
     address: initial?.address || '',
     phone: initial?.phone || '',
     gstin: initial?.gstin || '',
-    taxRate: String(initial?.taxRate ?? 5),
+    taxRate: String(initial?.taxRate ?? 0),
     serviceRate: String(initial?.serviceRate ?? 0),
     currency: initial?.currency || 'Rs.',
     active: initial?.active !== false,

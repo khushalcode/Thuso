@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ──────────────────────────────────────────────────────────────────────────
-# build-apk.sh — build a debug APK for ServingSync POS (single shop)
+# build-apk.sh — build a debug APK for Thuso (single shop)
 #
 # This script:
 #   1. Verifies environment (ANDROID_HOME, JAVA_HOME)
@@ -58,7 +58,7 @@ echo "==> [2/6] Building Next.js static export (BUILD_TARGET=apk)..."
 # not used in APK mode anyway (use-shop-fetch.ts intercepts everything).
 API_BACKUP=""
 if [ -d src/app/api ]; then
-  API_BACKUP="/tmp/servingsync-api-backup-$$"
+  API_BACKUP="/tmp/thuso-api-backup-$$"
   mv src/app/api "$API_BACKUP"
   echo "    Moved src/app/api to $API_BACKUP (will restore after build)"
 fi
@@ -97,7 +97,7 @@ echo ""
 echo "==> [5/6] Copying APK to download/..."
 mkdir -p download
 APK_SRC="android/app/build/outputs/apk/debug/app-debug.apk"
-APK_DST="download/servingsync-pos-debug.apk"
+APK_DST="download/thuso-pos-debug.apk"
 if [ ! -f "$APK_SRC" ]; then
   echo "ERROR: APK not found at $APK_SRC"
   exit 1
@@ -107,7 +107,7 @@ cp "$APK_SRC" "$APK_DST"
 echo ""
 echo "==> [6/6] Done."
 echo "    APK: $APK_DST ($(du -h "$APK_DST" | cut -f1))"
-echo "    Package: com.servingsync.pos"
+echo "    Package: com.thuso.pos"
 echo "    Version: 1.0 (versionCode 1)"
 echo "    Min Android: 7.0 (API 24)"
 echo "    Target Android: 16 (API 36)"

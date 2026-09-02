@@ -123,7 +123,7 @@ export default function SettingsPage() {
     phone: '',
     email: '',
     gstin: '',
-    taxRate: '5',
+    taxRate: '0',
     serviceRate: '0',
     currency: 'Rs.',
     invoicePrefix: 'INV',
@@ -181,7 +181,7 @@ export default function SettingsPage() {
         phone: data.settings.phone || '',
         email: data.settings.email || '',
         gstin: data.settings.gstin || '',
-        taxRate: String(data.settings.taxRate ?? 5),
+        taxRate: String(data.settings.taxRate ?? 0),
         serviceRate: String(data.settings.serviceRate ?? 0),
         currency: data.settings.currency || 'Rs.',
         invoicePrefix: data.settings.invoicePrefix || 'INV',
@@ -286,7 +286,7 @@ export default function SettingsPage() {
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xs text-slate-500">Default Tax Rate</p>
+            <p className="text-xs text-slate-500">Tax (asked at bill time)</p>
             <p className="text-lg font-bold text-orange-600">{f.taxRate}%</p>
           </div>
         </CardContent>
@@ -348,8 +348,11 @@ export default function SettingsPage() {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="space-y-1.5">
-                  <Label className="text-xs">Default Tax %</Label>
+                  <Label className="text-xs">Default Tax % (optional)</Label>
                   <Input type="number" step="0.5" value={f.taxRate} onChange={(e) => setF({ ...f, taxRate: e.target.value })} />
+                  <p className="text-[10px] text-slate-400 leading-tight">
+                    Only used as a hint. Tax is asked at bill-print time.
+                  </p>
                 </div>
                 <div className="space-y-1.5">
                   <Label className="text-xs">Service Charge %</Label>

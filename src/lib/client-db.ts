@@ -16,13 +16,13 @@ import { isValidKey } from '@/lib/license-keys'
 
 let db: Database | null = null
 let initialized = false
-const DB_KEY = 'servingsync-database'
+const DB_KEY = 'thuso-database'
 const DB_VERSION = 1
 
 // ─── IndexedDB helpers (for persisting SQLite file) ───
 function openIDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const req = indexedDB.open('servingsync', DB_VERSION)
+    const req = indexedDB.open('thuso', DB_VERSION)
     req.onupgradeneeded = () => {
       req.result.createObjectStore('database')
     }
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Shop (
   address TEXT,
   phone TEXT,
   gstin TEXT,
-  taxRate REAL NOT NULL DEFAULT 5,
+  taxRate REAL NOT NULL DEFAULT 0,
   serviceRate REAL NOT NULL DEFAULT 0,
   currency TEXT NOT NULL DEFAULT 'Rs.',
   color TEXT NOT NULL DEFAULT 'orange',
@@ -172,9 +172,9 @@ CREATE TABLE IF NOT EXISTS AppUser (
 CREATE TABLE IF NOT EXISTS ShopSetting (
   id TEXT PRIMARY KEY,
   shopId TEXT NOT NULL UNIQUE,
-  shopName TEXT NOT NULL DEFAULT 'ServingSync Restaurant',
+  shopName TEXT NOT NULL DEFAULT 'Thuso',
   address TEXT, phone TEXT, email TEXT, gstin TEXT,
-  taxRate REAL NOT NULL DEFAULT 5,
+  taxRate REAL NOT NULL DEFAULT 0,
   serviceRate REAL NOT NULL DEFAULT 0,
   currency TEXT NOT NULL DEFAULT 'Rs.',
   invoicePrefix TEXT NOT NULL DEFAULT 'INV',
@@ -436,7 +436,7 @@ function seedDatabase(database: Database) {
 
   // Seed super admin
   database.run('INSERT INTO AppUser (id, name, email, password, role, active) VALUES (?,?,?,?,?,?)',
-    [genId(), 'Super Admin', 'super@servingsync.com', 'admin123', 'admin', 1])
+    [genId(), 'Super Admin', 'super@thuso.com', 'admin123', 'admin', 1])
 
   // Seed license keys
   for (const key of LICENSE_KEYS) {
@@ -608,12 +608,221 @@ export function isDbReady(): boolean {
 
 // ─── Save after writes ───
 let saveTimer: any = null
+let periodicSaveTimer: any = null
+
 export function persistDB() {
   if (!db) return
   if (saveTimer) clearTimeout(saveTimer)
+  // Debounce writes (500ms) so rapid mutations don't spam IndexedDB.
   saveTimer = setTimeout(async () => {
     await saveDB(db!)
-  }, 500) // Debounce saves (500ms)
+    // Update the persistent Excel blob in IndexedDB (NOT a download —
+    // just stores the latest .xls file in IndexedDB so it accumulates
+    // over time. The user can download it anytime via the Export button
+    // in Management → Backup).
+    updateExcelBlob()
+  }, 500)
+}
+
+// ─── Force-save NOW (for tab close / app close) ────────────────────────
+export function persistDBSync() {
+  if (!db) return
+  try {
+    const data = db.export()
+    if (data.length <= MAX_BACKUP_SIZE) {
+      const b64 = uint8ToBase64(data)
+      localStorage.setItem(DB_BACKUP_KEY, b64)
+    }
+    saveDB(db).catch(() => {})
+  } catch (e) {
+    console.warn('[client-db] sync save failed:', e)
+  }
+}
+
+// ─── Persistent Excel file (stored in IndexedDB, NOT auto-downloaded) ──
+//
+// The user wants "Excel as database" — a single .xls file that accumulates
+// ALL data over time, stored persistently, and downloadable on demand.
+//
+// How it works:
+//   1. After every DB write, we rebuild the .xls blob from ALL tables
+//      and store it in a SEPARATE IndexedDB store called 'excel-backup'.
+//   2. This does NOT trigger a download — the blob just sits in
+//      IndexedDB, always up-to-date.
+//   3. When the user clicks "Export to Excel" in Management → Backup,
+//      we read the blob from IndexedDB and trigger a single download.
+//
+// This gives the user a real-time, always-fresh Excel file without
+// spamming their Downloads folder every 5 seconds.
+
+const EXCEL_IDB_NAME = 'thuso-excel'
+const EXCEL_IDB_STORE = 'file'
+let excelUpdateTimer: any = null
+
+function openExcelIDB(): Promise<IDBDatabase> {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(EXCEL_IDB_NAME, 1)
+    req.onupgradeneeded = () => req.result.createObjectStore(EXCEL_IDB_STORE)
+    req.onsuccess = () => resolve(req.result)
+    req.onerror = () => reject(req.error)
+  })
+}
+
+// Build the .xls blob from ALL tables in the SQLite DB
+function buildExcelBlob(): Blob | null {
+  if (!db) return null
+  const tableDefs = [
+    { name: 'Shop', sql: 'SELECT * FROM Shop' },
+    { name: 'MenuItems', sql: 'SELECT * FROM MenuItem ORDER BY category, name' },
+    { name: 'Tables', sql: 'SELECT * FROM RestaurantTable ORDER BY number' },
+    { name: 'Orders', sql: 'SELECT * FROM Orders ORDER BY createdAt DESC' },
+    { name: 'OrderItems', sql: 'SELECT * FROM OrderItem ORDER BY orderId' },
+    { name: 'Bills', sql: 'SELECT * FROM Bill ORDER BY paidAt DESC' },
+    { name: 'DeletedBills', sql: 'SELECT * FROM DeletedBill ORDER BY deletedAt DESC' },
+    { name: 'Customers', sql: 'SELECT * FROM Customer ORDER BY name' },
+    { name: 'Suppliers', sql: 'SELECT * FROM Supplier ORDER BY name' },
+    { name: 'Purchases', sql: 'SELECT * FROM Purchase ORDER BY createdAt DESC' },
+    { name: 'Expenses', sql: 'SELECT * FROM Expense ORDER BY date DESC' },
+    { name: 'MoneyIn', sql: 'SELECT * FROM MoneyIn ORDER BY date DESC' },
+    { name: 'MoneyOut', sql: 'SELECT * FROM MoneyOut ORDER BY date DESC' },
+    { name: 'Users', sql: 'SELECT id, name, email, role, active, shopId, createdAt FROM AppUser ORDER BY name' },
+    { name: 'Settings', sql: 'SELECT * FROM ShopSetting' },
+    { name: 'AuditLog', sql: 'SELECT * FROM AuditLog ORDER BY createdAt DESC' },
+    { name: 'MenuCategories', sql: 'SELECT * FROM MenuCategory ORDER BY sortOrder' },
+  ]
+  const sheets: any[] = []
+  for (const t of tableDefs) {
+    try {
+      const rows = query<any>(t.sql)
+      if (rows.length === 0) continue
+      const columns = Object.keys(rows[0])
+      const sheetRows = rows.map((r: any) => columns.map((c) => {
+        const v = r[c]
+        if (v == null) return ''
+        if (typeof v === 'number') return v
+        if (typeof v === 'boolean') return v ? 'TRUE' : 'FALSE'
+        return String(v)
+      }))
+      sheets.push({ name: t.name, columns, rows: sheetRows })
+    } catch { /* table might not exist yet — skip */ }
+  }
+  if (sheets.length === 0) return null
+  // Use the sync buildXlsBlob (no download, just returns the Blob)
+  // We can't use dynamic import here because this is called from a
+  // sync context sometimes. Instead, inline the HTML-table builder.
+  return buildXlsBlobInline(sheets)
+}
+
+// Inline .xls blob builder (same as excel-export.ts but without import)
+function buildXlsBlobInline(sheets: any[]): Blob {
+  const html: string[] = []
+  html.push('<?xml version="1.0" encoding="UTF-8"?>')
+  html.push('<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">')
+  html.push('<head><meta charset="UTF-8">')
+  html.push('<style>td, th { font-family: Calibri, Arial, sans-serif; font-size: 11pt; } th { background: #f3f4f6; font-weight: bold; text-align: left; padding: 4px; } td { padding: 4px; vertical-align: top; }</style>')
+  html.push('</head><body>')
+  for (const sheet of sheets) {
+    const safeName = sheet.name.replace(/[\\/?*[\]:]/g, '_').slice(0, 31)
+    html.push(`<table border="1"><thead><tr>`)
+    for (const col of sheet.columns) html.push(`<th>${escapeXmlInline(String(col))}</th>`)
+    html.push('</tr></thead><tbody>')
+    for (const row of sheet.rows) {
+      html.push('<tr>')
+      for (let i = 0; i < sheet.columns.length; i++) {
+        const cell = row[i]
+        if (typeof cell === 'number') html.push(`<td>${cell}</td>`)
+        else html.push(`<td>${escapeXmlInline(String(cell || ''))}</td>`)
+      }
+      html.push('</tr>')
+    }
+    html.push('</tbody></table><br/><br/>')
+  }
+  html.push('</body></html>')
+  return new Blob([html.join('\n')], { type: 'application/vnd.ms-excel' })
+}
+
+function escapeXmlInline(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
+}
+
+// Update the Excel blob in IndexedDB (debounced to 3s so we don't
+// rebuild the .xls on every single keystroke)
+function updateExcelBlob() {
+  if (typeof window === 'undefined') return
+  if (excelUpdateTimer) clearTimeout(excelUpdateTimer)
+  excelUpdateTimer = setTimeout(async () => {
+    try {
+      const blob = buildExcelBlob()
+      if (!blob) return
+      const idb = await openExcelIDB()
+      await new Promise<void>((resolve, reject) => {
+        const tx = idb.transaction(EXCEL_IDB_STORE, 'readwrite')
+        tx.objectStore(EXCEL_IDB_STORE).put(blob, 'latest')
+        tx.oncomplete = () => { idb.close(); resolve() }
+        tx.onerror = () => { idb.close(); reject(tx.error) }
+      })
+      console.log('[client-db] ✓ Excel blob updated in IndexedDB')
+    } catch (e) {
+      console.warn('[client-db] Excel blob update failed:', e)
+    }
+  }, 3000)
+}
+
+// ─── Public API: download the latest Excel file ────────────────────────
+// Called by the "Export to Excel" button in Management → Backup.
+// Reads the latest blob from IndexedDB and triggers a single download.
+export async function downloadLatestExcel(): Promise<void> {
+  try {
+    const idb = await openExcelIDB()
+    const blob = await new Promise<Blob | null>((resolve, reject) => {
+      const tx = idb.transaction(EXCEL_IDB_STORE, 'readonly')
+      const req = tx.objectStore(EXCEL_IDB_STORE).get('latest')
+      req.onsuccess = () => { idb.close(); resolve(req.result || null) }
+      req.onerror = () => { idb.close(); reject(req.error) }
+    })
+    if (!blob) {
+      // No blob yet — build one on the fly
+      const freshBlob = buildExcelBlob()
+      if (!freshBlob) {
+        console.warn('[client-db] No data to export')
+        return
+      }
+      triggerDownload(freshBlob)
+    } else {
+      triggerDownload(blob)
+    }
+  } catch (e) {
+    console.warn('[client-db] Excel download failed:', e)
+    // Fallback: build + download directly
+    const blob = buildExcelBlob()
+    if (blob) triggerDownload(blob)
+  }
+}
+
+function triggerDownload(blob: Blob) {
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  const dateStr = new Date().toISOString().split('T')[0]
+  a.download = `thuso-data-${dateStr}.xls`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
+}
+
+// ─── Periodic auto-save (every 30 seconds) ────────────────────────────
+export function startPeriodicSave() {
+  if (periodicSaveTimer) clearInterval(periodicSaveTimer)
+  periodicSaveTimer = setInterval(async () => {
+    if (db) {
+      try {
+        await saveDB(db)
+      } catch (e) {
+        console.warn('[client-db] periodic save failed:', e)
+      }
+    }
+  }, 30_000)
 }
 
 // ─── Query helpers ───
