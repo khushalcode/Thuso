@@ -10,6 +10,15 @@
  * script temporarily moves src/app/api out of the tree, runs the
  * build, and restores it afterwards — even if the build fails.
  *
+ * NOTE: the backup dir must live OUTSIDE src/app entirely. Next.js's
+ * App Router only excludes folders prefixed with "_" (private
+ * folders) — a leading "." has no special meaning to Next.js, so
+ * renaming to "src/app/.api-backup" still gets scanned as a real
+ * route (e.g. "/.api-backup/audit"), which then fails the
+ * `output: export` build because it isn't force-static. Moving it to
+ * "src/.api-backup" (a sibling of app/, not a child) takes it out of
+ * the routes tree completely.
+ *
  * This replaces relying on scripts/build-apk.sh (which also expects
  * ANDROID_HOME/JAVA_HOME and runs the full Gradle build) for CI steps
  * that only need the Next.js export step in isolation, e.g.:
@@ -22,7 +31,7 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 const apiDir = path.join(root, "src", "app", "api");
-const backupDir = path.join(root, "src", "app", ".api-backup");
+const backupDir = path.join(root, "src", ".api-backup");
 
 function moveApiOut() {
   if (fs.existsSync(apiDir)) {
