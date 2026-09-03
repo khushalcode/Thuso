@@ -50,10 +50,23 @@ if (!isApkTarget) {
   // Not an APK build (e.g. plain `npm run build` with no BUILD_TARGET
   // set) — run the normal standalone build, untouched.
   console.log("==> BUILD_TARGET != apk, running standalone build...");
-  execSync(
-    "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-    { cwd: root, stdio: "inherit", shell: "/bin/bash" }
-  );
+
+  execSync("next build", { cwd: root, stdio: "inherit" });
+
+  // Cross-platform copy (no bash/cp dependency — works on Windows CI
+  // runners where /bin/bash doesn't exist, as well as macOS/Linux).
+  const staticSrc = path.join(root, ".next", "static");
+  const staticDest = path.join(root, ".next", "standalone", ".next", "static");
+  const publicSrc = path.join(root, "public");
+  const publicDest = path.join(root, ".next", "standalone", "public");
+
+  console.log("==> Copying .next/static -> .next/standalone/.next/static ...");
+  fs.cpSync(staticSrc, staticDest, { recursive: true });
+
+  console.log("==> Copying public -> .next/standalone/public ...");
+  fs.cpSync(publicSrc, publicDest, { recursive: true });
+
+  console.log("==> Standalone build assembled.");
   process.exit(0);
 }
 
